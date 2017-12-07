@@ -8,6 +8,15 @@ public class EntityUser {
     private String role;
     private String privilege;
 
+    public EntityUser() {
+        this.id_users = id_users;
+        this.login = login;
+        this.pass = pass;
+        this.role = role;
+        this.privilege = privilege;
+    }
+
+
     public int getId_users() {
         return id_users;
     }

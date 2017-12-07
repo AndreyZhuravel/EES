@@ -16,6 +16,19 @@ public class EntityPhone {
     private String status;
     private String condition;
 
+    public EntityPhone() {
+        this.id_table_salesinfo = id_table_salesinfo;
+        this.id_table_phone = id_table_phone;
+        this.leadid = leadid;
+        this.pos = pos;
+        this.shop = shop;
+        this.region = region;
+        this.income = income;
+        this.description = description;
+        this.status = status;
+        this.condition = condition;
+    }
+
     public int getId_table_salesinfo() {
         return id_table_salesinfo;
     }

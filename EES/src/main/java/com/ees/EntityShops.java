@@ -15,6 +15,18 @@ public class EntityShops {
     private String status;
     private String condition;
 
+    public EntityShops() {
+        this.id_table_salesinfo = id_table_salesinfo;
+        this.id_table_shops = id_table_shops;
+        this.leadid = leadid;
+        this.pos = pos;
+        this.shop = shop;
+        this.shop_product = shop_product;
+        this.cfnumber = cfnumber;
+        this.status = status;
+        this.condition = condition;
+    }
+
     public int getId_table_salesinfo() {
         return id_table_salesinfo;
     }

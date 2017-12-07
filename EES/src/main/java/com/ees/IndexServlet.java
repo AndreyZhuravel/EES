@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = { "/home"})
+@WebServlet(urlPatterns = {"/home"})
 
 public class IndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -20,7 +20,6 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
         // Forward to /WEB-INF/views/homeView.jsp
         // (Users can not access directly into JSP pages placed in WEB-INF)

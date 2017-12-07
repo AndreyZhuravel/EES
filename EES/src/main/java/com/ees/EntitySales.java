@@ -15,6 +15,16 @@ public class EntitySales {
     private String date;
     private int month;
 
+    public EntitySales() {
+        this.id_users = id_users;
+        this.id_salesinfo = id_salesinfo;
+        this.leadid = leadid;
+        this.login = login;
+        this.expert = expert;
+        this.svmanager = svmanager;
+        this.areamanager = areamanager;
+    }
+
     public int getId_users() {
         return id_users;
     }

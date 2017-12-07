@@ -20,6 +20,19 @@ public class EntityAddress {
         return id_table_salesinfo;
     }
 
+    public EntityAddress() {
+        this.id_table_salesinfo = id_table_salesinfo;
+        this.id_table_address = id_table_address;
+        this.leadid = leadid;
+        this.pos = pos;
+        this.shop = shop;
+        this.region = region;
+        this.address_reg = address_reg;
+        this.address_fact = address_fact;
+        this.status = status;
+        this.condition = condition;
+    }
+
     public void setId_table_salesinfo(int id_table_salesinfo) {
         this.id_table_salesinfo = id_table_salesinfo;
     }
