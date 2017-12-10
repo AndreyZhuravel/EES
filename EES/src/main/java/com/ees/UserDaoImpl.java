@@ -1,0 +1,302 @@
+package com.ees;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+public class UserDaoImpl implements UserDao {
+
+//    private static final String DRIVER_NAME = "org.postgresql.Driver";
+//    private static final String DB_URL = "jdbc:postgresql:ca";
+//    private static final String ID = "postgres";
+//    private static final String PASS = "postgres";
+
+    private static final String FIND_ALL = "SELECT * FROM table_users ORDER BY id_users";
+    private static final String FIND_BY_ID = "SELECT * FROM table_users WHERE id_users=?";
+    private static final String FIND_BY_LOGIN = "SELECT * FROM table_users WHERE login=?";
+
+    private static final String INSERT = "INSERT INTO table_users(login, pass, role, privilege) VALUES(?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE table_users SET login=?, pass=?, role=?, privilege=? WHERE id_users=?";
+    private static final String DELETE = "DELETE FROM table_users WHERE id_users=?";
+
+
+    public List<EntityUser> findAll() {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        List<EntityUser> users = new ArrayList<EntityUser>();
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(FIND_ALL);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                int id_users = rs.getInt("id_users");
+                String login = rs.getString("login");
+                String pass = rs.getString("pass");
+                String role = rs.getString("role");
+                String privilege = rs.getString("privilege");
+
+                EntityUser user = new EntityUser(id_users, login, pass, role, privilege);
+                user.setId_users(id_users);
+                user.setLogin(login);
+                user.setPass(pass);
+                user.setRole(role);
+                user.setPrivilege(privilege);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(stmt);
+            close(conn);
+            System.out.println("FindAll method was successfully executed");
+        }
+
+        return users;
+    }
+
+    public EntityUser findById(int id_users) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(FIND_BY_ID);
+            stmt.setInt(1, id_users);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                id_users = rs.getInt("id_users");
+                String login = rs.getString("login");
+                String pass = rs.getString("pass");
+                String role = rs.getString("role");
+                String privilege = rs.getString("privilege");
+
+                EntityUser user = new EntityUser(id_users, login, pass, role, privilege);
+                user.setId_users(id_users);
+                user.setLogin(login);
+                user.setPass(pass);
+                user.setRole(role);
+                user.setPrivilege(privilege);
+
+                return user;
+
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(stmt);
+            close(conn);
+            System.out.println("FindById method was successfully executed");
+        }
+    }
+
+    public EntityUser findByLogin(String login) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(FIND_BY_LOGIN);
+            stmt.setString(1, login);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int id_users = rs.getInt("id_users");
+                login = rs.getString("login");
+                String pass = rs.getString("pass");
+                String role = rs.getString("role");
+                String privilege = rs.getString("privilege");
+
+                EntityUser user = new EntityUser(id_users, login, pass, role, privilege);
+                user.setId_users(id_users);
+                user.setLogin(login);
+                user.setPass(pass);
+                user.setRole(role);
+                user.setPrivilege(privilege);
+
+                return user;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(stmt);
+            close(conn);
+            System.out.println("FindByLogin method was successfully executed");
+        }
+    }
+
+    public int insert(EntityUser user) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, user.getLogin());
+            stmt.setString(2, user.getPass());
+            stmt.setString(3, user.getRole());
+            stmt.setString(4, user.getPrivilege());
+
+            int result = stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                user.setId_users(rs.getInt(1));
+            }
+
+            return result;
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(stmt);
+            close(conn);
+            System.out.println(user + "was successfully add");
+        }
+    }
+
+    public int update(EntityUser user) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(UPDATE);
+
+            stmt.setString(1, user.getLogin());
+            stmt.setString(2, user.getPass());
+            stmt.setString(3, user.getRole());
+            stmt.setString(4, user.getPrivilege());
+
+            stmt.setInt(5, user.getId_users());
+
+            return stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(stmt);
+            close(conn);
+            System.out.println(user + "was successfully updated");
+        }
+    }
+
+    public int delete(int id_users) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(DELETE);
+            stmt.setInt(1, id_users);
+
+            return stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        } finally {
+            close(stmt);
+            close(conn);
+            System.out.println("Record with number " + id_users + " is successfully deleted");
+        }
+    }
+
+    public Connection getConnection() {
+
+        System.out.println("Connecting to database..");
+        Connection conn = null;
+
+        try {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            InputStream input = classLoader.getResourceAsStream("config_main.properties");
+
+            Properties prop = new Properties();
+            try {
+                prop.load(input);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager
+                    .getConnection(
+                            (prop.getProperty("url")),
+                            (prop.getProperty("dbuser")),
+                            (prop.getProperty("dbpassword")));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Creating statement to db_ees database...");
+        Statement stmt = null;
+
+        try {
+            if (conn != null) {
+                stmt = conn.createStatement();
+                System.out.println("CreateStatement OK");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+//    private Connection getConnection() {
+//
+//        try {
+//            Class.forName(DRIVER_NAME);
+//            return DriverManager.getConnection(DB_URL, ID, PASS);
+//
+//        } catch (Exception e) {
+//            // e.printStackTrace();
+//            throw new RuntimeException(e);
+//        }
+//    }
+
+    private static void close(Connection con) {
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                // e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private static void close(Statement stmt) {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                // e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+}

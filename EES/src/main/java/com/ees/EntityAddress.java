@@ -16,11 +16,11 @@ public class EntityAddress {
     private String status;
     private String condition;
 
-    public int getId_table_salesinfo() {
-        return id_table_salesinfo;
-    }
-
-    public EntityAddress() {
+    public EntityAddress(int id_table_salesinfo, int id_table_address,
+                         int leadid, int pos, String shop,
+                         String region, String address_reg,
+                         String address_fact, String status,
+                         String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
         this.id_table_address = id_table_address;
         this.leadid = leadid;
@@ -31,6 +31,10 @@ public class EntityAddress {
         this.address_fact = address_fact;
         this.status = status;
         this.condition = condition;
+    }
+
+    public int getId_table_salesinfo() {
+        return id_table_salesinfo;
     }
 
     public void setId_table_salesinfo(int id_table_salesinfo) {

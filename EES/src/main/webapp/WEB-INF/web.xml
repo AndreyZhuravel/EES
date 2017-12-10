@@ -1,55 +1,44 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+    <display-name>Archetype Created Web Application</display-name>
 
-  <!--<filter-mapping>-->
-  <!--<filter-name>jdbcFilter</filter-name>-->
-  <!--<url-pattern>/*</url-pattern>-->
-  <!--</filter-mapping>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>jdbcFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
-  <!--<filter-mapping>-->
-  <!--<filter-name>cookieFilter</filter-name>-->
-  <!--<url-pattern>/*</url-pattern>-->
-  <!--</filter-mapping>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>cookieFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
-  <servlet>
-    <servlet-name>IndexServlet</servlet-name>
-    <servlet-class>com.ees.IndexServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>com.ees.IndexServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>IndexServlet</servlet-name>
-    <url-pattern>/index</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
 
-  <welcome-file-list>
-    <welcome-file>home</welcome-file>
-    <welcome-file>index.html</welcome-file>
-  </welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
-  <servlet>
-    <servlet-name>SqlServlet</servlet-name>
-    <servlet-class>com.ees.SqlServlet</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>UserDaoServlet</servlet-name>
+        <servlet-class>com.ees.UserDaoServlet</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>SqlServlet</servlet-name>
-    <url-pattern>/sqlservlet</url-pattern>
-  </servlet-mapping>
-
-
-  <servlet>
-  <servlet-name>TestSqlServlet</servlet-name>
-  <servlet-class>com.ees.TestSqlServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-  <servlet-name>TestSqlServlet</servlet-name>
-  <url-pattern>/testsqlservlet</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserDaoServlet</servlet-name>
+        <url-pattern>/UserDaoServlet</url-pattern>
+    </servlet-mapping>
 
 </web-app>

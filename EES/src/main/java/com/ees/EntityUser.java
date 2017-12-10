@@ -8,7 +8,11 @@ public class EntityUser {
     private String role;
     private String privilege;
 
-    public EntityUser() {
+    public EntityUser(int id_users,
+                      String login,
+                      String pass,
+                      String role,
+                      String privilege) {
         this.id_users = id_users;
         this.login = login;
         this.pass = pass;
@@ -29,7 +33,7 @@ public class EntityUser {
         return login;
     }
 
-    public void setName(String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -37,7 +41,7 @@ public class EntityUser {
         return pass;
     }
 
-    public void setPassword(String pass) {
+    public void setPass(String pass) {
         this.pass = pass;
     }
 
@@ -57,4 +61,14 @@ public class EntityUser {
         this.privilege = privilege;
     }
 
+    @Override
+    public String toString() {
+        return "EntityUser{" +
+                "id_users=" + id_users +
+                ", login='" + login + '\'' +
+                ", pass='" + pass + '\'' +
+                ", role='" + role + '\'' +
+                ", privilege='" + privilege + '\'' +
+                '}';
+    }
 }

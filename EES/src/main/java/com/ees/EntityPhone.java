@@ -16,7 +16,11 @@ public class EntityPhone {
     private String status;
     private String condition;
 
-    public EntityPhone() {
+    public EntityPhone(int id_table_salesinfo, int id_table_phone,
+                       int leadid, int pos, String shop,
+                       String region, String income,
+                       String description, String status,
+                       String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
         this.id_table_phone = id_table_phone;
         this.leadid = leadid;

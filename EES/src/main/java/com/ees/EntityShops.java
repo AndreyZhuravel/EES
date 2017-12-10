@@ -15,7 +15,10 @@ public class EntityShops {
     private String status;
     private String condition;
 
-    public EntityShops() {
+    public EntityShops(int id_table_salesinfo, int id_table_shops,
+                       int leadid, int pos, String shop,
+                       String shop_product, int cfnumber,
+                       String status, String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
         this.id_table_shops = id_table_shops;
         this.leadid = leadid;

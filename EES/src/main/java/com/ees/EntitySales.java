@@ -15,7 +15,11 @@ public class EntitySales {
     private String date;
     private int month;
 
-    public EntitySales() {
+    public EntitySales(int id_users, int id_salesinfo,
+                       int leadid,
+                       String login, String expert,
+                       String svmanager, String areamanager,
+                       String date, int month) {
         this.id_users = id_users;
         this.id_salesinfo = id_salesinfo;
         this.leadid = leadid;
