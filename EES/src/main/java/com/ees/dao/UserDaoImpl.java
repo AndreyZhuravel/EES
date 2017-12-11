@@ -1,4 +1,6 @@
-package com.ees;
+package com.ees.dao;
+
+import com.ees.entity.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,10 +30,10 @@ public class UserDaoImpl implements UserDao {
     private static final String DELETE = "DELETE FROM table_users WHERE id_users=?";
 
 
-    public List<EntityUser> findAll() {
+    public List<User> findAll() {
         Connection conn = null;
         PreparedStatement stmt = null;
-        List<EntityUser> users = new ArrayList<EntityUser>();
+        List<User> users = new ArrayList<User>();
 
         try {
             conn = getConnection();
@@ -45,7 +47,7 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                EntityUser user = new EntityUser(id_users, login, pass, role, privilege);
+                User user = new User(id_users, login, pass, role, privilege);
                 user.setId_users(id_users);
                 user.setLogin(login);
                 user.setPass(pass);
@@ -65,7 +67,7 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
-    public EntityUser findById(int id_users) {
+    public User findById(int id_users) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -83,7 +85,7 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                EntityUser user = new EntityUser(id_users, login, pass, role, privilege);
+                User user = new User(id_users, login, pass, role, privilege);
                 user.setId_users(id_users);
                 user.setLogin(login);
                 user.setPass(pass);
@@ -105,7 +107,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public EntityUser findByLogin(String login) {
+    public User findByLogin(String login) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -123,7 +125,7 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                EntityUser user = new EntityUser(id_users, login, pass, role, privilege);
+                User user = new User(id_users, login, pass, role, privilege);
                 user.setId_users(id_users);
                 user.setLogin(login);
                 user.setPass(pass);
@@ -144,7 +146,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public int insert(EntityUser user) {
+    public int insert(User user) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -174,7 +176,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public int update(EntityUser user) {
+    public int update(User user) {
         Connection conn = null;
         PreparedStatement stmt = null;
 

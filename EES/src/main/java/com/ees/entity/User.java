@@ -1,6 +1,6 @@
-package com.ees;
+package com.ees.entity;
 
-public class EntityUser {
+public class User {
 
     private int id_users;
     private String login;
@@ -8,7 +8,7 @@ public class EntityUser {
     private String role;
     private String privilege;
 
-    public EntityUser(int id_users,
+    public User(int id_users,
                       String login,
                       String pass,
                       String role,
@@ -19,7 +19,6 @@ public class EntityUser {
         this.role = role;
         this.privilege = privilege;
     }
-
 
     public int getId_users() {
         return id_users;
@@ -63,7 +62,7 @@ public class EntityUser {
 
     @Override
     public String toString() {
-        return "EntityUser{" +
+        return "User{" +
                 "id_users=" + id_users +
                 ", login='" + login + '\'' +
                 ", pass='" + pass + '\'' +
@@ -71,4 +70,5 @@ public class EntityUser {
                 ", privilege='" + privilege + '\'' +
                 '}';
     }
+
 }

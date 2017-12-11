@@ -1,6 +1,6 @@
-package com.ees;
+package com.ees.entity;
 
-public class EntitySales {
+public class Sales {
 
     private int id_users;
 
@@ -15,7 +15,7 @@ public class EntitySales {
     private String date;
     private int month;
 
-    public EntitySales(int id_users, int id_salesinfo,
+    public Sales(int id_users, int id_salesinfo,
                        int leadid,
                        String login, String expert,
                        String svmanager, String areamanager,
@@ -100,4 +100,5 @@ public class EntitySales {
     public void setMonth(int month) {
         this.month = month;
     }
+
 }

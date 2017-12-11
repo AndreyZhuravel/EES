@@ -1,4 +1,4 @@
-package com.ees;
+package com.ees.servlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

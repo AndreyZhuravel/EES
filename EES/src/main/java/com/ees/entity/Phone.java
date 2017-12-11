@@ -1,34 +1,34 @@
-package com.ees;
+package com.ees.entity;
 
-public class EntityAddress {
+public class Phone {
 
     private int id_table_salesinfo;
 
-    private int id_table_address;
+    private int id_table_phone;
     private int leadid;
     private int pos;
     private String shop;
     private String region;
 
-    private String address_reg;
-    private String address_fact;
+    private String income;
+    private String description;
 
     private String status;
     private String condition;
 
-    public EntityAddress(int id_table_salesinfo, int id_table_address,
-                         int leadid, int pos, String shop,
-                         String region, String address_reg,
-                         String address_fact, String status,
-                         String condition) {
+    public Phone(int id_table_salesinfo, int id_table_phone,
+                       int leadid, int pos, String shop,
+                       String region, String income,
+                       String description, String status,
+                       String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
-        this.id_table_address = id_table_address;
+        this.id_table_phone = id_table_phone;
         this.leadid = leadid;
         this.pos = pos;
         this.shop = shop;
         this.region = region;
-        this.address_reg = address_reg;
-        this.address_fact = address_fact;
+        this.income = income;
+        this.description = description;
         this.status = status;
         this.condition = condition;
     }
@@ -41,12 +41,12 @@ public class EntityAddress {
         this.id_table_salesinfo = id_table_salesinfo;
     }
 
-    public int getId_table_address() {
-        return id_table_address;
+    public int getId_table_phone() {
+        return id_table_phone;
     }
 
-    public void setId_table_address(int id_table_address) {
-        this.id_table_address = id_table_address;
+    public void setId_table_phone(int id_table_phone) {
+        this.id_table_phone = id_table_phone;
     }
 
     public int getLeadid() {
@@ -81,20 +81,20 @@ public class EntityAddress {
         this.region = region;
     }
 
-    public String getAddress_reg() {
-        return address_reg;
+    public String getIncome() {
+        return income;
     }
 
-    public void setAddress_reg(String address_reg) {
-        this.address_reg = address_reg;
+    public void setIncome(String income) {
+        this.income = income;
     }
 
-    public String getAddress_fact() {
-        return address_fact;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAddress_fact(String address_fact) {
-        this.address_fact = address_fact;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
@@ -112,4 +112,5 @@ public class EntityAddress {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
 }

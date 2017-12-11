@@ -1,4 +1,8 @@
-package com.ees;
+package com.ees.servlet;
+
+import com.ees.dao.UserDao;
+import com.ees.dao.UserDaoImpl;
+import com.ees.entity.User;
 
 import java.io.*;
 import java.util.List;
@@ -32,32 +36,32 @@ public class UserDaoServlet extends HttpServlet {
             String html = "";
 
             UserDao dao = new UserDaoImpl();
-            List<EntityUser> users = dao.findAll();
+            List<User> users = dao.findAll();
 
-//          EntityUser user = dao.findById(3); /* test findByID*/
-//          EntityUser user = dao.findByLogin("sheyla"); /* test findByLogin*/
+//          User user = dao.findById(3); /* test findByID*/
+//          User user = dao.findByLogin("sheyla"); /* test findByLogin*/
 
 //          /* insert*/
-//            EntityUser user1 = new EntityUser(Statement.RETURN_GENERATED_KEYS, "mike","sdfjs", "agent", "read");
+//            User user1 = new User(Statement.RETURN_GENERATED_KEYS, "mike","sdfjs", "agent", "read");
 //            dao.insert(user1);
 //          /* insert*/
 
 
 //          /* update*/
-//            EntityUser user = dao.findByLogin("sheyla");
+//            User user = dao.findByLogin("sheyla");
 //            user.setPass("7654321");
 //            dao.update(user);
 //          /* update*/
 
 
 //          /* delete*/
-//            EntityUser user2 = dao.findById(6);
+//            User user2 = dao.findById(6);
 //            dao.delete(6);
 //          /* delete*/
 
 
           /* findAll*/
-            for (EntityUser user : users) {
+            for (User user : users) {
                 html = html + "<p><div>"
                         + user.getLogin() + "</div>" + "<p><div>"
                         + user.getPass() + "</div>" + "<p><div>"

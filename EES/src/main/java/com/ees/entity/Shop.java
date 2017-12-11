@@ -1,6 +1,6 @@
-package com.ees;
+package com.ees.entity;
 
-public class EntityShops {
+public class Shop {
 
     private int id_table_salesinfo;
 
@@ -15,7 +15,7 @@ public class EntityShops {
     private String status;
     private String condition;
 
-    public EntityShops(int id_table_salesinfo, int id_table_shops,
+    public Shop(int id_table_salesinfo, int id_table_shops,
                        int leadid, int pos, String shop,
                        String shop_product, int cfnumber,
                        String status, String condition) {
@@ -101,4 +101,5 @@ public class EntityShops {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
 }
