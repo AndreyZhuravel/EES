@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import static com.ees.entity.User.*;
+
 public class UserDaoTestImpl implements UserDao {
 
 //    private static final String DRIVER_NAME = "org.postgresql.Driver";
@@ -28,7 +30,6 @@ public class UserDaoTestImpl implements UserDao {
     private static final String INSERT = "INSERT INTO table_users(login, pass, role, privilege) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE table_users SET login=?, pass=?, role=?, privilege=? WHERE id_users=?";
     private static final String DELETE = "DELETE FROM table_users WHERE id_users=?";
-
 
     public List<User> findAll() {
         Connection conn = null;
@@ -47,13 +48,15 @@ public class UserDaoTestImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = new User(id_users, login, pass, role, privilege);
-                user.setId_users(id_users);
-                user.setLogin(login);
-                user.setPass(pass);
-                user.setRole(role);
-                user.setPrivilege(privilege);
-                users.add(user);
+                User user = User.
+
+//                User user = new User(id_users, login, pass, role, privilege);
+//                user(id_users);
+//                user.setLogin(login);
+//                user.setPass(pass);
+//                user.setRole(role);
+//                user.setPrivilege(privilege);
+//                users.add(user);
             }
 
         } catch (SQLException e) {
