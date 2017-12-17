@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class UserDaoImpl implements UserDao {
+public class UserDaoTestImpl implements UserDao {
 
 //    private static final String DRIVER_NAME = "org.postgresql.Driver";
 //    private static final String DB_URL = "jdbc:postgresql:ca";
@@ -243,7 +243,7 @@ public class UserDaoImpl implements UserDao {
 
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            InputStream input = classLoader.getResourceAsStream("config_main.properties");
+            InputStream input = classLoader.getResourceAsStream("config_test.properties");
 
             Properties prop = new Properties();
             try {
@@ -265,7 +265,7 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
 
-        System.out.println("Creating statement to db_ees database...");
+        System.out.println("Creating statement to db_ees_test database...");
         Statement stmt = null;
 
         try {

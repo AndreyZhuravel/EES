@@ -16,10 +16,10 @@ public class Sales {
     private int month;
 
     public Sales(int id_users, int id_salesinfo,
-                       int leadid,
-                       String login, String expert,
-                       String svmanager, String areamanager,
-                       String date, int month) {
+                 int leadid,
+                 String login, String expert,
+                 String svmanager, String areamanager,
+                 String date, int month) {
         this.id_users = id_users;
         this.id_salesinfo = id_salesinfo;
         this.leadid = leadid;
@@ -101,4 +101,18 @@ public class Sales {
         this.month = month;
     }
 
+    @Override
+    public String toString() {
+        return "Sales{" +
+                "id_users=" + id_users +
+                ", id_salesinfo=" + id_salesinfo +
+                ", leadid=" + leadid +
+                ", login='" + login + '\'' +
+                ", expert='" + expert + '\'' +
+                ", svmanager='" + svmanager + '\'' +
+                ", areamanager='" + areamanager + '\'' +
+                ", date='" + date + '\'' +
+                ", month=" + month +
+                '}';
+    }
 }

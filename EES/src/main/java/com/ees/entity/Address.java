@@ -5,7 +5,7 @@ public class Address {
     private int id_table_salesinfo;
 
     private int id_table_address;
-    private int leadid;
+
     private int pos;
     private String shop;
     private String region;
@@ -17,13 +17,12 @@ public class Address {
     private String condition;
 
     public Address(int id_table_salesinfo, int id_table_address,
-                         int leadid, int pos, String shop,
-                         String region, String address_reg,
-                         String address_fact, String status,
-                         String condition) {
+                   int pos, String shop,
+                   String region, String address_reg,
+                   String address_fact, String status,
+                   String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
         this.id_table_address = id_table_address;
-        this.leadid = leadid;
         this.pos = pos;
         this.shop = shop;
         this.region = region;
@@ -47,14 +46,6 @@ public class Address {
 
     public void setId_table_address(int id_table_address) {
         this.id_table_address = id_table_address;
-    }
-
-    public int getLeadid() {
-        return leadid;
-    }
-
-    public void setLeadid(int leadid) {
-        this.leadid = leadid;
     }
 
     public int getPos() {
@@ -113,4 +104,18 @@ public class Address {
         this.condition = condition;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id_table_salesinfo=" + id_table_salesinfo +
+                ", id_table_address=" + id_table_address +
+                ", pos=" + pos +
+                ", shop='" + shop + '\'' +
+                ", region='" + region + '\'' +
+                ", address_reg='" + address_reg + '\'' +
+                ", address_fact='" + address_fact + '\'' +
+                ", status='" + status + '\'' +
+                ", condition='" + condition + '\'' +
+                '}';
+    }
 }

@@ -1,6 +1,12 @@
 package com.ees.entity;
+import lombok.Builder;
 
 public class User {
+
+//    @Builder(builderMethodName = "UserBuilder")
+//    public static User user(int id_users, String login, ) {
+//        return new User(color, barkSound);
+//    }
 
     private int id_users;
     private String login;

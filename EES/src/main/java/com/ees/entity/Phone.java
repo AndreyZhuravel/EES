@@ -5,7 +5,7 @@ public class Phone {
     private int id_table_salesinfo;
 
     private int id_table_phone;
-    private int leadid;
+
     private int pos;
     private String shop;
     private String region;
@@ -17,13 +17,12 @@ public class Phone {
     private String condition;
 
     public Phone(int id_table_salesinfo, int id_table_phone,
-                       int leadid, int pos, String shop,
-                       String region, String income,
-                       String description, String status,
-                       String condition) {
+                 int pos, String shop,
+                 String region, String income,
+                 String description, String status,
+                 String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
         this.id_table_phone = id_table_phone;
-        this.leadid = leadid;
         this.pos = pos;
         this.shop = shop;
         this.region = region;
@@ -47,14 +46,6 @@ public class Phone {
 
     public void setId_table_phone(int id_table_phone) {
         this.id_table_phone = id_table_phone;
-    }
-
-    public int getLeadid() {
-        return leadid;
-    }
-
-    public void setLeadid(int leadid) {
-        this.leadid = leadid;
     }
 
     public int getPos() {
@@ -113,4 +104,18 @@ public class Phone {
         this.condition = condition;
     }
 
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "id_table_salesinfo=" + id_table_salesinfo +
+                ", id_table_phone=" + id_table_phone +
+                ", pos=" + pos +
+                ", shop='" + shop + '\'' +
+                ", region='" + region + '\'' +
+                ", income='" + income + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                ", condition='" + condition + '\'' +
+                '}';
+    }
 }

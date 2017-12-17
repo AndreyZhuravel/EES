@@ -41,4 +41,15 @@
         <url-pattern>/UserDaoServlet</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UserDaoTestServlet</servlet-name>
+        <servlet-class>com.ees.servlet.UserDaoTestServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserDaoTestServlet</servlet-name>
+        <url-pattern>/UserDaoTestServlet</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>

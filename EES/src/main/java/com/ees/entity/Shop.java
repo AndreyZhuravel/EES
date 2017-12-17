@@ -5,7 +5,7 @@ public class Shop {
     private int id_table_salesinfo;
 
     private int id_table_shops;
-    private int leadid;
+
     private int pos;
     private String shop;
 
@@ -16,12 +16,12 @@ public class Shop {
     private String condition;
 
     public Shop(int id_table_salesinfo, int id_table_shops,
-                       int leadid, int pos, String shop,
-                       String shop_product, int cfnumber,
-                       String status, String condition) {
+                int pos, String shop,
+                String shop_product, int cfnumber,
+                String status, String condition) {
         this.id_table_salesinfo = id_table_salesinfo;
         this.id_table_shops = id_table_shops;
-        this.leadid = leadid;
+
         this.pos = pos;
         this.shop = shop;
         this.shop_product = shop_product;
@@ -44,14 +44,6 @@ public class Shop {
 
     public void setId_table_shops(int id_table_shops) {
         this.id_table_shops = id_table_shops;
-    }
-
-    public int getLeadid() {
-        return leadid;
-    }
-
-    public void setLeadid(int leadid) {
-        this.leadid = leadid;
     }
 
     public int getPos() {
@@ -102,4 +94,17 @@ public class Shop {
         this.condition = condition;
     }
 
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "id_table_salesinfo=" + id_table_salesinfo +
+                ", id_table_shops=" + id_table_shops +
+                ", pos=" + pos +
+                ", shop='" + shop + '\'' +
+                ", shop_product='" + shop_product + '\'' +
+                ", cfnumber=" + cfnumber +
+                ", status='" + status + '\'' +
+                ", condition='" + condition + '\'' +
+                '}';
+    }
 }

@@ -2,7 +2,7 @@ package com.ees.servlet;
 
 import com.ees.dao.UserDao;
 
-import com.ees.dao.UserDaoImpl;
+import com.ees.dao.UserDaoTestImpl;
 import com.ees.entity.User;
 
 import java.io.*;
@@ -13,14 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class UserDaoServlet
- */
+public class UserDaoTestServlet extends HttpServlet {
 
-public class UserDaoServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public UserDaoServlet() {
+    public UserDaoTestServlet() {
         super();
     }
 
@@ -38,8 +35,8 @@ public class UserDaoServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             String html = "";
 
-            UserDao dao = new UserDaoImpl();
-            List<User> users = dao.findAll();
+            UserDao daotest = new UserDaoTestImpl();
+            List<User> users = daotest.findAll();
 
 //          User user = dao.findById(3); /* test findByID*/
 
@@ -110,5 +107,6 @@ public class UserDaoServlet extends HttpServlet {
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //
 //    }
+
 
 }
