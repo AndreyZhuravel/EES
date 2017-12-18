@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static com.ees.entity.User.*;
-
 public class UserDaoTestImpl implements UserDao {
 
 //    private static final String DRIVER_NAME = "org.postgresql.Driver";
@@ -48,7 +46,13 @@ public class UserDaoTestImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = User.
+                User user = User._myuserbuilder()
+                        .id_users(id_users)
+                        .login(login)
+                        .pass(pass)
+                        .role(role)
+                        .privilege(privilege)
+                        .build();
 
 //                User user = new User(id_users, login, pass, role, privilege);
 //                user(id_users);
@@ -56,7 +60,8 @@ public class UserDaoTestImpl implements UserDao {
 //                user.setPass(pass);
 //                user.setRole(role);
 //                user.setPrivilege(privilege);
-//                users.add(user);
+
+                users.add(user);
             }
 
         } catch (SQLException e) {
@@ -91,12 +96,13 @@ public class UserDaoTestImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = new User(id_users, login, pass, role, privilege);
-                user.setId_users(id_users);
-                user.setLogin(login);
-                user.setPass(pass);
-                user.setRole(role);
-                user.setPrivilege(privilege);
+                User user = User._myuserbuilder()
+                        .id_users(id_users)
+                        .login(login)
+                        .pass(pass)
+                        .role(role)
+                        .privilege(privilege)
+                        .build();
 
                 return user;
 
@@ -122,7 +128,7 @@ public class UserDaoTestImpl implements UserDao {
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(FIND_BY_LOGIN);
-            stmt.setString(1, login);
+            stmt.setString(1, java.lang.String.valueOf(login));
 
             ResultSet rs = stmt.executeQuery();
 
@@ -133,12 +139,13 @@ public class UserDaoTestImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = new User(id_users, login, pass, role, privilege);
-                user.setId_users(id_users);
-                user.setLogin(login);
-                user.setPass(pass);
-                user.setRole(role);
-                user.setPrivilege(privilege);
+                User user = User._myuserbuilder()
+                        .id_users(id_users)
+                        .login(login)
+                        .pass(pass)
+                        .role(role)
+                        .privilege(privilege)
+                        .build();
 
                 return user;
             } else {

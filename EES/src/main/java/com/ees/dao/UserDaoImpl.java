@@ -16,10 +16,10 @@ import java.util.Properties;
 
 public class UserDaoImpl implements UserDao {
 
-//    private static final String DRIVER_NAME = "org.postgresql.Driver";
-//    private static final String DB_URL = "jdbc:postgresql:ca";
-//    private static final String ID = "postgres";
-//    private static final String PASS = "postgres";
+    private static final String DRIVER_NAME = "org.postgresql.Driver";
+    private static final String DB_URL = "jdbc:postgresql:ca";
+    private static final String ID = "postgres";
+    private static final String PASS = "postgres";
 
     private static final String FIND_ALL = "SELECT * FROM table_users ORDER BY id_users";
     private static final String FIND_BY_ID = "SELECT * FROM table_users WHERE id_users=?";
@@ -47,12 +47,13 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = new User(id_users, login, pass, role, privilege);
-                user.setId_users(id_users);
-                user.setLogin(login);
-                user.setPass(pass);
-                user.setRole(role);
-                user.setPrivilege(privilege);
+                User user = User._myuserbuilder()
+                        .id_users(id_users)
+                        .login(login)
+                        .pass(pass)
+                        .role(role)
+                        .privilege(privilege)
+                        .build();
                 users.add(user);
             }
 
@@ -88,12 +89,13 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = new User(id_users, login, pass, role, privilege);
-                user.setId_users(id_users);
-                user.setLogin(login);
-                user.setPass(pass);
-                user.setRole(role);
-                user.setPrivilege(privilege);
+                User user = User._myuserbuilder()
+                        .id_users(id_users)
+                        .login(login)
+                        .pass(pass)
+                        .role(role)
+                        .privilege(privilege)
+                        .build();
 
                 return user;
 
@@ -130,12 +132,13 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = new User(id_users, login, pass, role, privilege);
-                user.setId_users(id_users);
-                user.setLogin(login);
-                user.setPass(pass);
-                user.setRole(role);
-                user.setPrivilege(privilege);
+                User user = User._myuserbuilder()
+                        .id_users(id_users)
+                        .login(login)
+                        .pass(pass)
+                        .role(role)
+                        .privilege(privilege)
+                        .build();
 
                 return user;
             } else {
@@ -292,26 +295,26 @@ public class UserDaoImpl implements UserDao {
 //        }
 //    }
 
-//    private static void close(Connection con) {
-//        if (con != null) {
-//            try {
-//                con.close();
-//            } catch (SQLException e) {
-//                // e.printStackTrace();
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
-//
-//    private static void close(Statement stmt) {
-//        if (stmt != null) {
-//            try {
-//                stmt.close();
-//            } catch (SQLException e) {
-//                // e.printStackTrace();
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
+    private static void close(Connection con) {
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                // e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private static void close(Statement stmt) {
+        if (stmt != null) {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                // e.printStackTrace();
+                throw new RuntimeException(e);
+            }
+        }
+    }
 
 }

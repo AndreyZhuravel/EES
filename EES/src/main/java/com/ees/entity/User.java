@@ -1,18 +1,12 @@
 package com.ees.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Builder(builderMethodName = "_builder")
+@Builder(builderMethodName = "_myuserbuilder")
 public class User {
 
     private int id_users;
@@ -20,10 +14,6 @@ public class User {
     private String pass;
     private String role;
     private String privilege;
-
-//    public static User _builder() {
-//        return _builder();
-//    }
 
 //    public User(int id_users,
 //                      String login,
