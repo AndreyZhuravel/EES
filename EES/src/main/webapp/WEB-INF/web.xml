@@ -16,20 +16,20 @@
     <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
-    <servlet>
-        <servlet-name>IndexServlet</servlet-name>
-        <servlet-class>com.ees.servlet.IndexServlet</servlet-class>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>IndexServlet</servlet-name>-->
+        <!--<servlet-class>com.ees.servlet.IndexServlet</servlet-class>-->
+    <!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>IndexServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>IndexServlet</servlet-name>-->
+        <!--<url-pattern>/index</url-pattern>-->
+    <!--</servlet-mapping>-->
 
-    <welcome-file-list>
-        <welcome-file>home</welcome-file>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>home</welcome-file>-->
+        <!--<welcome-file>index.html</welcome-file>-->
+    <!--</welcome-file-list>-->
 
     <servlet>
         <servlet-name>UserDaoServlet</servlet-name>
@@ -48,7 +48,17 @@
 
     <servlet-mapping>
         <servlet-name>UserDaoTestServlet</servlet-name>
-        <url-pattern>/UserDaoTestServlet</url-pattern>
+        <url-pattern>/api/UserDaoTestServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SampleServlet</servlet-name>
+        <servlet-class>com.ees.servlet.SampleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SampleServlet</servlet-name>
+        <url-pattern>/SampleServlet</url-pattern>
     </servlet-mapping>
 
 

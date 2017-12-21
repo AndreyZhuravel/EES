@@ -23,7 +23,7 @@ public class IndexServlet extends HttpServlet {
 
         // Forward to /WEB-INF/views/homeView.jsp
         // (Users can not access directly into JSP pages placed in WEB-INF)
-        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/index.jsp");
+        RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/index.html");
 
         dispatcher.forward(request, response);
 
