@@ -13,49 +13,27 @@
 
 <!--Sample Servlet Call-->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-     $(document).ready(function() {
-         $("#Samplebutton").click(function() {
-             servletCall();
-         });
-
-     });
-     function servletCall() {
-            <!--myObj = "id_users";-->
-            myObj = {
-            "id_users":5,
-            "login":"Andrey",
-            "pass":"sdfjhsdjhf",
-            "role":"admin",
-            "privilege":"grantall",
-            };
-         $.post(
-             "SampleServlet",
-             {text : JSON.stringify(myObj)}, //message I want to send from user
-
-            function(result) {
-             $('#Samplediv').html('Here is your result : <strong>' + result + '</strong>'); //message I want to show user
-         });
-     };
-
-</script>
 
 <!--Other scripts-->
 <script type="text/javascript" src="myscript.js" charset="UTF-8"></script> <!--путь к файлу javscript-->
 
 <p>
-    Hello, what's your name? <input id="insertedName"/>
-    <button type="buttonfirst" onclick="functionName(insertedName.value)">Say hello</button>
+    <input type="login" id="login" value=""/>
 </p>
 
 <p>
-    <button type="buttonsecond" onclick="getRadioValue();">Get something from database</button>
-</p><!--Вызываем функцию -->
+    <input type="pass" id="pass" value=""/>
+</p>
 
 <p>
-    <button id="Samplebutton">Get String from Server</button>
-<div id="Samplediv"></div>
+    <button id="button_checkuseraccess">Check user access</button>
 </p>
+
+<p>
+    <button id="button_showuserinfo">Show user info</button>
+</p>
+
+<div id="div_result"></div>
 
 <!--End-->
 
