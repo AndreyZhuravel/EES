@@ -1,5 +1,6 @@
 package com.ees.servlet;
 
+import com.ees.dao.ConnectionPoolManager;
 import com.ees.dao.UserDao;
 import com.ees.dao.UserDaoTestImpl;
 import com.ees.entity.User;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.util.List;
 
 public class SampleServlet extends HttpServlet {
@@ -73,15 +75,16 @@ public class SampleServlet extends HttpServlet {
             // If pass is empty show only information from database
             else {
                 if (pass.equals("")) {
+
                     UserDao dao = new UserDaoTestImpl();
                     User user = dao.findByLogin(login); /* call findByLogin method*/
 
                     PrintWriter out = response.getWriter();
-                    html = html + "<p><div>"
-                            + user.getId_users() + "</div>" + "<p><div>"
-                            + user.getPass() + "</div>" + "<p><div>"
-                            + user.getRole() + "</div>" + "<p><div>"
-                            + user.getPrivilege() + "</div></p>";
+
+                    html = "Id_users:" + user.getId_users()
+                            + ",Role:" + user.getRole()
+                            + ",Privilege:" + user.getPrivilege();
+
                     out.println(html);
 
                 } else {
@@ -90,7 +93,7 @@ public class SampleServlet extends HttpServlet {
                     User user = dao.findByLogin(login); /* call findByLogin method*/
 
                     if ((login.equals(user.getLogin())) && (pass.equals(user.getPass()))) {
-                        html = "Authorization successfull !";
+                        html = "100";
                     } else {
                         html = "Authorization denied. Login or password is incorrect";
                     }

@@ -30,13 +30,49 @@ public class UserDaoTestImpl implements UserDao {
     private static final String DELETE = "DELETE FROM table_users WHERE id_users=?";
 
     public List<User> findAll() {
-        Connection conn = null;
+
+//    Connection conn = null;
+//    String jdbcDriver = "org.postgresql.Driver";
+//    String dbURL = "jdbc:postgresql://localhost:5432/db_ees_test";
+
         PreparedStatement stmt = null;
         List<User> users = new ArrayList<User>();
 
         try {
-            conn = getConnection();
-            stmt = conn.prepareStatement(FIND_ALL);
+
+//          conn = getConnection();
+//            work variant 1:
+//            ConnectionPool pool = ConnectionPool.getInstance();
+//            Connection[] connections = new Connection[5];
+//
+//            for(int i = 0; i < connections.length; i++) {
+//                connections[i] = pool.getConnection();
+//                stmt = connections[i].prepareStatement(FIND_ALL);
+//            }
+//            work variant 1:
+//
+              ConnectionPoolManager pool = new ConnectionPoolManager();
+              Connection dbConn = pool.getConnectionFromPool();
+              stmt = dbConn.prepareStatement(FIND_ALL);
+
+//            Connection dbConn = null;
+//            ConnectionPool connectionPool = null;
+//            connectionPool = new ConnectionPool(jdbcDriver, dbURL,
+//            "postgres", "root");
+//
+//            connectionPool.setInitialConnections(2); //specify the initial number of connections to establish
+//            connectionPool.setIncrementalConnections(2);
+//            connectionPool.setMaxConnections(2);
+//
+//            connectionPool.createPool(); //create the connection pool
+//            dbConn = connectionPool.getConnection();
+//            Statement stmt = dbConn.createStatement();
+//            String sql = "SELECT * FROM table_users ORDER BY id_users";
+//            ResultSet rs = stmt.executeQuery(sql);
+//            stmt = conn.prepareStatement(FIND_ALL);
+
+            System.out.println("find all method invokation");
+
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -74,7 +110,13 @@ public class UserDaoTestImpl implements UserDao {
 //            System.out.println("FindAll method was successfully executed");
 //        }
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+//        } finally {
+//            //return connection to pool (always within a finally block)
+//            connectionPool.returnConnection((Connection)conn);
+//        }
         return users;
     }
 
@@ -122,14 +164,31 @@ public class UserDaoTestImpl implements UserDao {
     }
 
     public User findByLogin(String login) {
-        Connection conn = null;
+//        Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
-            conn = getConnection();
-            stmt = conn.prepareStatement(FIND_BY_LOGIN);
+
+//            work variant 1:
+//            ConnectionPool pool = ConnectionPool.getInstance();
+//            Connection[] connections = new Connection[5];
+//
+//            for(int i = 0; i < connections.length; i++) {
+//                connections[i] = pool.getConnection();
+//                stmt = connections[i].prepareStatement(FIND_BY_LOGIN);
+//                stmt.setString(1, java.lang.String.valueOf(login));
+//            }
+//            work variant 1:
+
+            ConnectionPoolManager pool = new ConnectionPoolManager();
+            Connection dbConn = pool.getConnectionFromPool();
+            stmt = dbConn.prepareStatement(FIND_BY_LOGIN);
             stmt.setString(1, java.lang.String.valueOf(login));
 
+//          conn = getConnection();
+//          conn = (Connection) new ConnectionPool();
+
+            System.out.println("find by login method invokation");
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
@@ -254,8 +313,8 @@ public class UserDaoTestImpl implements UserDao {
         try {
             ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             InputStream input = classLoader.getResourceAsStream("config_test.properties");
-
             Properties prop = new Properties();
+
             try {
                 prop.load(input);
             } catch (IOException e) {
@@ -288,8 +347,9 @@ public class UserDaoTestImpl implements UserDao {
         }
         return conn;
     }
+}
 
-
+//
 //    private Connection getConnection() {
 //
 //        try {
@@ -301,7 +361,7 @@ public class UserDaoTestImpl implements UserDao {
 //            throw new RuntimeException(e);
 //        }
 //    }
-
+//
 //    private static void close(Connection con) {
 //        if (con != null) {
 //            try {
@@ -324,4 +384,3 @@ public class UserDaoTestImpl implements UserDao {
 //        }
 //    }
 
-}

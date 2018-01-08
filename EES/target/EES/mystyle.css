@@ -1,0 +1,35 @@
+p {
+	color: green;
+	font-size:20px;
+}
+#red-text{
+color:red;
+}
+.blue-text{
+color:blue;
+}
+
+.mystyle1 {
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+	font-size: 18px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+	
+.mystyle2 {
+	color: green;
+	font-size:20px;
+	}
+	
+.mystyle3 {
+	color: green;
+	font-size:20px;
+	}
+	
+#unique{
+    border: 4px solid blue;
+    font-size:40px;
+	font-weight: bolder;
+}
