@@ -106,9 +106,9 @@ public class ConnectionPoolManager{
         connectionPool.addElement(connection);
     }
 
-    public static void main(String args[])
-    {
-        ConnectionPoolManager ConnectionPoolManager = new ConnectionPoolManager();
-    }
+//    public static void main(String args[])
+//    {
+//        ConnectionPoolManager ConnectionPoolManager = new ConnectionPoolManager();
+//    }
 
 }

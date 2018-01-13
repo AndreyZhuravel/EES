@@ -1,6 +1,5 @@
 package com.ees.servlet;
 
-import com.ees.dao.ConnectionPoolManager;
 import com.ees.dao.UserDao;
 import com.ees.dao.UserDaoTestImpl;
 import com.ees.entity.User;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.util.List;
 
 public class SampleServlet extends HttpServlet {
@@ -30,6 +28,7 @@ public class SampleServlet extends HttpServlet {
 
     public int checkUser(String login) {
         int check = 0;
+
         UserDao daotest = new UserDaoTestImpl();
         List<User> users = daotest.findAll();
 
@@ -68,7 +67,7 @@ public class SampleServlet extends HttpServlet {
 
             {
                 PrintWriter out = response.getWriter();
-                html = "User is not find";
+                html = "User is not found";
                 out.println(html);
             }
 

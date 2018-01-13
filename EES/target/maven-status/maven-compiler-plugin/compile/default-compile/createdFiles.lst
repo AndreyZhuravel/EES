@@ -9,6 +9,7 @@ com\ees\entity\Address.class
 com\ees\servlet\IndexServlet.class
 com\ees\dao\UserDaoTestImpl.class
 com\ees\entity\User$UserBuilder.class
+com\ees\dao\ConnectionPoolManager.class
 com\ees\dao\UserDao.class
 com\ees\servlet\SampleServlet.class
 com\ees\entity\Shop.class

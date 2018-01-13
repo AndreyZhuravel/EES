@@ -28,10 +28,12 @@ public class UserDaoTestImpl implements UserDao {
     private static final String INSERT = "INSERT INTO table_users(login, pass, role, privilege) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE table_users SET login=?, pass=?, role=?, privilege=? WHERE id_users=?";
     private static final String DELETE = "DELETE FROM table_users WHERE id_users=?";
+//
+//    private ConnectionPool pool;
 
     public List<User> findAll() {
 
-//    Connection conn = null;
+    Connection conn = null;
 //    String jdbcDriver = "org.postgresql.Driver";
 //    String dbURL = "jdbc:postgresql://localhost:5432/db_ees_test";
 
@@ -40,8 +42,9 @@ public class UserDaoTestImpl implements UserDao {
 
         try {
 
-//          conn = getConnection();
-//            work variant 1:
+              conn = getConnection();
+              stmt = conn.prepareStatement(FIND_ALL);
+
 //            ConnectionPool pool = ConnectionPool.getInstance();
 //            Connection[] connections = new Connection[5];
 //
@@ -49,11 +52,14 @@ public class UserDaoTestImpl implements UserDao {
 //                connections[i] = pool.getConnection();
 //                stmt = connections[i].prepareStatement(FIND_ALL);
 //            }
-//            work variant 1:
 //
-              ConnectionPoolManager pool = new ConnectionPoolManager();
-              Connection dbConn = pool.getConnectionFromPool();
-              stmt = dbConn.prepareStatement(FIND_ALL);
+//            int preIndex = connections[0].getClass().getCanonicalName().length();
+//            for(int i = 0; i < connections.length; i++)
+//                System.out.printf("Connection %2d : %s\n", i+1, connections[i].toString().substring(preIndex));
+
+//            ConnectionPoolManager pool = new ConnectionPoolManager();
+//            Connection connection = pool.getConnectionFromPool();
+//            stmt = connection.prepareStatement(FIND_ALL);
 
 //            Connection dbConn = null;
 //            ConnectionPool connectionPool = null;
@@ -72,7 +78,6 @@ public class UserDaoTestImpl implements UserDao {
 //            stmt = conn.prepareStatement(FIND_ALL);
 
             System.out.println("find all method invokation");
-
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -164,12 +169,12 @@ public class UserDaoTestImpl implements UserDao {
     }
 
     public User findByLogin(String login) {
-//        Connection conn = null;
+
+        Connection conn = null;
         PreparedStatement stmt = null;
 
         try {
 
-//            work variant 1:
 //            ConnectionPool pool = ConnectionPool.getInstance();
 //            Connection[] connections = new Connection[5];
 //
@@ -178,14 +183,17 @@ public class UserDaoTestImpl implements UserDao {
 //                stmt = connections[i].prepareStatement(FIND_BY_LOGIN);
 //                stmt.setString(1, java.lang.String.valueOf(login));
 //            }
-//            work variant 1:
 
-            ConnectionPoolManager pool = new ConnectionPoolManager();
-            Connection dbConn = pool.getConnectionFromPool();
-            stmt = dbConn.prepareStatement(FIND_BY_LOGIN);
+//            ConnectionPoolManager pool = new ConnectionPoolManager();
+//            Connection dbConn = pool.getConnectionFromPool();
+//            stmt = dbConn.prepareStatement(FIND_BY_LOGIN);
+//            stmt.setString(1, java.lang.String.valueOf(login));
+
+            conn = getConnection();
+
+            stmt = conn.prepareStatement(FIND_BY_LOGIN);
             stmt.setString(1, java.lang.String.valueOf(login));
 
-//          conn = getConnection();
 //          conn = (Connection) new ConnectionPool();
 
             System.out.println("find by login method invokation");

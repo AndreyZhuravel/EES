@@ -49,8 +49,19 @@ $.ajax
     {
 
     if ((result) == 100) {
-    window.location.replace('main.html');
+    var temp = document.getElementById("login").value;
+    storeValue('Temp', temp);
 
+    $.get('main.html', function(result)
+    {
+//    console.log(result);
+
+    $('#contentbar').html(result);
+    getStoredValue(temp);
+    document.getElementById("login").value = temp;
+
+    }
+    );
     }
     else {
 
@@ -71,6 +82,27 @@ $.ajax
         }
     }
 });
+};
+
+function buttonClick(temp) {
+    temp = temp;
+    storeValue('myPageMode', temp);
+}
+
+function storeValue(key, value) {
+    if (localStorage) {
+        localStorage.setItem(key, value);
+    } else {
+        $.cookies.set(key, value);
+    }
+};
+
+function getStoredValue(key) {
+    if (localStorage) {
+        return localStorage.getItem(key);
+    } else {
+        return $.cookies.get(key);
+    }
 };
 // End Servlet Call:
 

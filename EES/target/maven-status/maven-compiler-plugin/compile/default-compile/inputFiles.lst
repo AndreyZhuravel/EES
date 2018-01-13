@@ -10,6 +10,7 @@ D:\EES\EES\src\main\java\com\ees\entity\Address.java
 D:\EES\EES\src\main\java\com\ees\dao\UserDaoImpl.java
 D:\EES\EES\src\main\java\com\ees\dao\ConnectionPool.java
 D:\EES\EES\src\main\java\com\ees\dao\UserDaoTestImpl.java
+D:\EES\EES\src\main\java\com\ees\dao\ConnectionPoolManager.java
 D:\EES\EES\src\main\java\com\ees\servlet\UserDaoTestServlet.java
 D:\EES\EES\src\main\java\com\ees\entity\Shop.java
 D:\EES\EES\src\main\java\com\ees\dao\ConnectionPoolExample.java
