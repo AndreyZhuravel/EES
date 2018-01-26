@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class UserDaoServlet
- */
-
 public class UserDaoServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     public UserDaoServlet() {
@@ -38,11 +35,10 @@ public class UserDaoServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
             String html = "";
 
-            UserDao dao = new UserDaoImpl();
-            List<User> users = dao.findAll();
+            UserDao daotest = new UserDaoImpl();
+            List<User> users = daotest.findAll();
 
-//          User user = dao.findById(3); /* test findByID*/
-
+//            User user = daotest.findByLogin(""); /* test findByID*/
 //          User user = dao.findByLogin("sheyla"); /* test findByLogin*/
 
 //          /* insert*/
@@ -65,13 +61,13 @@ public class UserDaoServlet extends HttpServlet {
 
 
           /* findAll*/
-            for (User user : users) {
-                html = html + "<p><div>"
-                        + user.getLogin() + "</div>" + "<p><div>"
-                        + user.getPass() + "</div>" + "<p><div>"
-                        + user.getRole() + "</div>" + "<p><div>"
-                        + user.getPrivilege() + "</div></p>";
-            }
+//            for (User user : users) {
+//                html = html + "<p><div>"
+//                        + user.getLogin() + "</div>" + "<p><div>"
+//                        + user.getPass() + "</div>" + "<p><div>"
+//                        + user.getRole() + "</div>" + "<p><div>"
+//                        + user.getPrivilege() + "</div></p>";
+//            }
 
             /* findAll*/
 
@@ -110,5 +106,6 @@ public class UserDaoServlet extends HttpServlet {
 //    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //
 //    }
+
 
 }

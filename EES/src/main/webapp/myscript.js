@@ -1,5 +1,10 @@
 // Start Servlet Call:
      $(document).ready(function() {
+
+         $("#button_getaddress").click(function() {
+          alert("Hello! This is siimple get alert box!");
+         });
+
          $("#button_getmyinfo").click(function() {
 
          if (document.getElementById("login").value == null || document.getElementById("login").value === "") {
@@ -37,7 +42,7 @@ if (document.getElementById('pass')) {
      };
 
     var userJson = JSON.stringify(userObj);
-    var url = "SampleServlet";
+    var url = "UserServlet";
 
 $.ajax
 ({
@@ -104,9 +109,13 @@ function getStoredValue(key) {
         return $.cookies.get(key);
     }
 };
+
+//function buttonAddressClick() {
+//alert( "Привет" );
+//
+//}
+
 // End Servlet Call:
-
-
 
 //// Start Servlet Call:
 //     $(document).ready(function()

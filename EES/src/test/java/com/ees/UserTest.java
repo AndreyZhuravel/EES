@@ -1,7 +1,7 @@
 package com.ees;
 
 import com.ees.dao.UserDao;
-import com.ees.dao.UserDaoTestImpl;
+import com.ees.dao.UserDaoImpl;
 import com.ees.entity.User;
 import org.junit.Test;
 
@@ -20,19 +20,19 @@ public class UserTest {
     @Test
     public void NumberOfUsersInDatabase() {
 
-        UserDao dao = new UserDaoTestImpl();
+        UserDao dao = new UserDaoImpl();
         List<User> users = dao.findAll();
 
         System.out.println(users.size());
         //true, check size of in db_db_ees_test in table_users
-        assertThat(users, hasSize(4));
+        assertThat(users, hasSize(10));
 
         System.out.println("NumberOfUsersInDatabase test is OK");
     }
 
     @Test
     public void UserFieldsIsNotNull() {
-        UserDao dao = new UserDaoTestImpl();
+        UserDao dao = new UserDaoImpl();
         List<User> users = dao.findAll();
 
         //true, check not null
@@ -55,7 +55,7 @@ public class UserTest {
     @Test
     public void UserPasswordLength() {
 
-        UserDao dao = new UserDaoTestImpl();
+        UserDao dao = new UserDaoImpl();
         List<User> users = dao.findAll();
 
         for (User user : users) {
@@ -69,7 +69,7 @@ public class UserTest {
     @Test
     public void UserPasswordContainsNumbers() {
 
-        UserDao dao = new UserDaoTestImpl();
+        UserDao dao = new UserDaoImpl();
         List<User> users = dao.findAll();
 
         for (User user : users) {
@@ -88,7 +88,7 @@ public class UserTest {
     @Test
     public void UserLoginDuplicates() {
 
-        UserDao dao = new UserDaoTestImpl();
+        UserDao dao = new UserDaoImpl();
         List<User> users = dao.findAll();
 
         int check = 0;
