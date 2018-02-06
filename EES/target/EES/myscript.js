@@ -2,7 +2,7 @@
      $(document).ready(function() {
 
          $("#button_getaddress").click(function() {
-          alert("Hello! I am an alert box!");
+          alert("Hello! This is siimple get alert box!");
          });
 
          $("#button_getmyinfo").click(function() {
@@ -11,7 +11,7 @@
             alert( 'Please input login. Password must be empty' );
 
          } else {
-           servletCallAccess();
+           CallDispatcher();
          }
 
          });
@@ -21,13 +21,13 @@
          if (document.getElementById("pass").value == null || document.getElementById("pass").value === "" || document.getElementById("login").value == null || document.getElementById("login").value === "") {
            alert( 'Please input login or password' );
          } else {
-           servletCallAccess();
+           CallDispatcher();
          }
 
          });
      });
 
-function servletCallAccess(){
+function CallDispatcher(){
 
 if (document.getElementById('pass')) {
       var userObj = {
@@ -42,7 +42,7 @@ if (document.getElementById('pass')) {
      };
 
     var userJson = JSON.stringify(userObj);
-    var url = "UserServlet";
+    var url = "DispatcherServlet";
 
 $.ajax
 ({
