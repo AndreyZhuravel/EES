@@ -6,23 +6,23 @@
     <display-name>Archetype Created Web Application</display-name>
 
     <!--<servlet>-->
-        <!--<servlet-name>UserDaoServlet</servlet-name>-->
-        <!--<servlet-class>com.ees.servlet.UserDaoServlet</servlet-class>-->
+        <!--<servlet-name>AjaxController</servlet-name>-->
+        <!--<servlet-class>com.ees.web.controller.AjaxController</servlet-class>-->
     <!--</servlet>-->
 
     <!--<servlet-mapping>-->
-        <!--<servlet-name>UserDaoServlet</servlet-name>-->
-        <!--<url-pattern>/api/*</url-pattern>-->
+        <!--<servlet-name>AjaxController</servlet-name>-->
+        <!--<url-pattern>/AjaxController</url-pattern>-->
     <!--</servlet-mapping>-->
 
     <servlet>
-        <servlet-name>DispatcherServlet</servlet-name>
-        <servlet-class>com.ees.servlet.DispatcherServlet</servlet-class>
+        <servlet-name>UserServlet</servlet-name>
+        <servlet-class>com.ees.servlet.UserServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>DispatcherServlet</servlet-name>
-        <url-pattern>/DispatcherServlet</url-pattern>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern>/UserServlet</url-pattern>
     </servlet-mapping>
 
 

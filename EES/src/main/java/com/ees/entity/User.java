@@ -1,5 +1,7 @@
 package com.ees.entity;
 
+import com.ees.web.view.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,8 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder(builderMethodName = "_myuserbuilder")
+
 public class User {
 
+    @JsonView(Views.Public.class)
     private int id_users;
     private String login;
     private String pass;
