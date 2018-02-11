@@ -26,6 +26,7 @@ public class UserServlet extends HttpServlet {
         doPost(request, response);
     }
 
+    //Method for check if user present in database or not, if yes = 1, if no = 0.
     public int checkUser(String login) {
         int check = 0;
 
@@ -60,7 +61,7 @@ public class UserServlet extends HttpServlet {
             String pass = jsonObject.getString("pass");
             String html = "";
 
-            // Invoke method for check if this user contains in our database
+            // Invoke method for check if this user present in db_ees_test
             if (checkUser(login) == 0)
 
             {
@@ -69,7 +70,7 @@ public class UserServlet extends HttpServlet {
                 out.println(html);
             }
 
-            // If pass is empty show only information from database
+            // If password is empty get some information from db_ees_test
             else {
                 if (pass.equals("")) {
 
@@ -90,7 +91,7 @@ public class UserServlet extends HttpServlet {
                     User user = dao.findByLogin(login); /* call findByLogin method*/
 
                     if ((login.equals(user.getLogin())) && (pass.equals(user.getPass()))) {
-                        html = "100";
+                        html = "100"; /* Successfull user entering*/
                     } else {
                         html = "Authorization denied. Login or password is incorrect";
                     }

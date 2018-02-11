@@ -217,8 +217,7 @@
 <body>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<script type="text/javascript" src="resources/myscript.js" charset="UTF-8"></script>
+<script src="resources/myscript.js" charset="UTF-8"></script>
 
 <div id="page">
     <header id="header">

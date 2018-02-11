@@ -12,7 +12,7 @@ import lombok.Setter;
 
 public class User {
 
-    @JsonView(Views.Public.class)
+//    @JsonView(Views.Public.class)
     private int id_users;
     private String login;
     private String pass;

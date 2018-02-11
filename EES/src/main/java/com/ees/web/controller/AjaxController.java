@@ -6,7 +6,6 @@ import com.ees.dao.UserDaoImpl;
 import com.ees.entity.User;
 import com.ees.web.model.AjaxResponseBody;
 import com.ees.web.view.Views;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

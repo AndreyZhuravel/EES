@@ -14,12 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class UserDaoImpl implements UserDao {
+//Implementation of methods for User Entity
 
-//    private static final String DRIVER_NAME = "org.postgresql.Driver";
-//    private static final String DB_URL = "jdbc:postgresql:ca";
-//    private static final String ID = "postgres";
-//    private static final String PASS = "postgres";
+public class UserDaoImpl implements UserDao {
 
     private static final String FIND_ALL = "SELECT * FROM table_users ORDER BY id_users";
     private static final String FIND_BY_ID = "SELECT * FROM table_users WHERE id_users=?";
@@ -28,15 +25,10 @@ public class UserDaoImpl implements UserDao {
     private static final String INSERT = "INSERT INTO table_users(login, pass, role, privilege) VALUES(?, ?, ?, ?)";
     private static final String UPDATE = "UPDATE table_users SET login=?, pass=?, role=?, privilege=? WHERE id_users=?";
     private static final String DELETE = "DELETE FROM table_users WHERE id_users=?";
-//
-//    private ConnectionPool pool;
 
     public List<User> findAll() {
 
         Connection conn = null;
-//    String jdbcDriver = "org.postgresql.Driver";
-//    String dbURL = "jdbc:postgresql://localhost:5432/db_ees_test";
-
         PreparedStatement stmt = null;
         List<User> users = new ArrayList<User>();
 
@@ -44,38 +36,6 @@ public class UserDaoImpl implements UserDao {
 
             conn = getConnection();
             stmt = conn.prepareStatement(FIND_ALL);
-
-//            ConnectionPool pool = ConnectionPool.getInstance();
-//            Connection[] connections = new Connection[5];
-//
-//            for(int i = 0; i < connections.length; i++) {
-//                connections[i] = pool.getConnection();
-//                stmt = connections[i].prepareStatement(FIND_ALL);
-//            }
-//
-//            int preIndex = connections[0].getClass().getCanonicalName().length();
-//            for(int i = 0; i < connections.length; i++)
-//                System.out.printf("Connection %2d : %s\n", i+1, connections[i].toString().substring(preIndex));
-
-//            ConnectionPoolManager pool = new ConnectionPoolManager();
-//            Connection connection = pool.getConnectionFromPool();
-//            stmt = connection.prepareStatement(FIND_ALL);
-
-//            Connection dbConn = null;
-//            ConnectionPool connectionPool = null;
-//            connectionPool = new ConnectionPool(jdbcDriver, dbURL,
-//            "postgres", "root");
-//
-//            connectionPool.setInitialConnections(2); //specify the initial number of connections to establish
-//            connectionPool.setIncrementalConnections(2);
-//            connectionPool.setMaxConnections(2);
-//
-//            connectionPool.createPool(); //create the connection pool
-//            dbConn = connectionPool.getConnection();
-//            Statement stmt = dbConn.createStatement();
-//            String sql = "SELECT * FROM table_users ORDER BY id_users";
-//            ResultSet rs = stmt.executeQuery(sql);
-//            stmt = conn.prepareStatement(FIND_ALL);
 
             System.out.println("find all method invokation");
             ResultSet rs = stmt.executeQuery();
@@ -95,13 +55,6 @@ public class UserDaoImpl implements UserDao {
                         .privilege(privilege)
                         .build();
 
-//                User user = new User(id_users, login, pass, role, privilege);
-//                user(id_users);
-//                user.setLogin(login);
-//                user.setPass(pass);
-//                user.setRole(role);
-//                user.setPrivilege(privilege);
-
                 users.add(user);
             }
 
@@ -118,10 +71,6 @@ public class UserDaoImpl implements UserDao {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-//        } finally {
-//            //return connection to pool (always within a finally block)
-//            connectionPool.returnConnection((Connection)conn);
-//        }
         return users;
     }
 
@@ -174,27 +123,10 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
 
         try {
-
-//            ConnectionPool pool = ConnectionPool.getInstance();
-//            Connection[] connections = new Connection[5];
-//
-//            for(int i = 0; i < connections.length; i++) {
-//                connections[i] = pool.getConnection();
-//                stmt = connections[i].prepareStatement(FIND_BY_LOGIN);
-//                stmt.setString(1, java.lang.String.valueOf(login));
-//            }
-
-//            ConnectionPoolManager pool = new ConnectionPoolManager();
-//            Connection dbConn = pool.getConnectionFromPool();
-//            stmt = dbConn.prepareStatement(FIND_BY_LOGIN);
-//            stmt.setString(1, java.lang.String.valueOf(login));
-
             conn = getConnection();
 
             stmt = conn.prepareStatement(FIND_BY_LOGIN);
             stmt.setString(1, java.lang.String.valueOf(login));
-
-//          conn = (Connection) new ConnectionPool();
 
             System.out.println("find by login method invokation");
             ResultSet rs = stmt.executeQuery();
@@ -230,7 +162,7 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public int insert(User user) {
+     public int insert(User user) {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -356,38 +288,3 @@ public class UserDaoImpl implements UserDao {
         return conn;
     }
 }
-
-//
-//    private Connection getConnection() {
-//
-//        try {
-//            Class.forName(DRIVER_NAME);
-//            return DriverManager.getConnection(DB_URL, ID, PASS);
-//
-//        } catch (Exception e) {
-//            // e.printStackTrace();
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    private static void close(Connection con) {
-//        if (con != null) {
-//            try {
-//                con.close();
-//            } catch (SQLException e) {
-//                // e.printStackTrace();
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
-//
-//    private static void close(Statement stmt) {
-//        if (stmt != null) {
-//            try {
-//                stmt.close();
-//            } catch (SQLException e) {
-//                // e.printStackTrace();
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }

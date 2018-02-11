@@ -12,7 +12,7 @@
 
 <script src="resources/jquery.1.10.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="resources/myscript.js" charset="UTF-8"></script>
+<script src="resources/myscript.js" charset="UTF-8"></script>
 
 <p>
     User Profile Page
@@ -23,11 +23,15 @@
 </p>
 
 <p>
-    <button id="button_getmyinfo">Simple SQL #1</button>
+    <button id="button_getsqlone">Simple SQL #1</button>
 </p>
 
 <p>
-    <button id="button_getaddress">Simple SQL #2</button>
+    <button id="button_getsqltwo">Simple SQL #2</button>
+</p>
+
+<p>
+    <button id="button_getsqlthree">Simple SQL #3</button>
 </p>
 
 <div id="div_result">

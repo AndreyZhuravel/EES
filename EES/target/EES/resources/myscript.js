@@ -1,14 +1,17 @@
 //Main call functions
      $(document).ready(function() {
 
-         //This button present on main.jsp
-         $("#button_getaddress").click(function() {
-          TestAjaxController();
-
+         $("#button_getsqlthree").click(function() {
+          alert( "Кнопка должна вызывать SQL #3" );
          });
 
          //This button present on main.jsp
-         $("#button_getmyinfo").click(function() {
+         $("#button_getsqltwo").click(function() {
+         QueryServlet();
+         });
+
+         //This button present on main.jsp
+         $("#button_getsqlone").click(function() {
 
          if (document.getElementById("login").value == null || document.getElementById("login").value === "") {
             alert( 'Please input login. Password must be empty' );
@@ -121,7 +124,6 @@ function getStoredValue(key) {
 
 /////////////////////////////////////////
 //This function must call web.controller.AjaxController, but it does not work.
-
 function TestAjaxController() {
 
 		var search = {}
@@ -130,7 +132,7 @@ function TestAjaxController() {
 		$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : "/api/getSearchResult",
+			url : "/helloWorld",
 			data : JSON.stringify(search),
 			dataType : 'json',
 			timeout : 100000,
@@ -160,3 +162,31 @@ function TestAjaxController() {
     		$('#feedback').html(json);
     	}
 /////////////////////////////////////////
+//This function must call QueryServlet.
+function QueryServlet(){
+
+    var userObj = {
+          "login":document.getElementById("login").value,
+    }
+
+    var userJson = JSON.stringify(userObj);
+    var url = "QueryServlet";
+
+$.ajax
+({
+    url: url,
+    method: "post",
+    data: userJson,
+    contentType: "application/json",
+    success: function(result)
+    {
+          var fields = result.split(","); // RESULT
+          var Id_users = fields[0] + '<br>';
+          var login = fields[1] + '<br>';
+          var leadid = fields[2] + '<br>';
+          result = Id_users + login + leadid;
+          $('#div_result').html('<strong>' + result + '</strong>');
+            }
+        }
+    );
+};
