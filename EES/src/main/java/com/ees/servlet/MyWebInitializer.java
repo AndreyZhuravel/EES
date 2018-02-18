@@ -1,8 +1,7 @@
 package com.ees.servlet;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
 import com.ees.config.SpringWebConfig;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class MyWebInitializer extends
 		AbstractAnnotationConfigDispatcherServletInitializer {

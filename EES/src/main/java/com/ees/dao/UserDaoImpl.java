@@ -1,18 +1,15 @@
 package com.ees.dao;
 
 import com.ees.entity.User;
+import com.ees.services.DBConnector;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 //Implementation of methods for User Entity
 
@@ -34,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 
         try {
 
-            conn = getConnection();
+            conn = DBConnector.getConnection();
             stmt = conn.prepareStatement(FIND_ALL);
 
             System.out.println("find all method invokation");
@@ -47,13 +44,7 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = User._myuserbuilder()
-                        .id_users(id_users)
-                        .login(login)
-                        .pass(pass)
-                        .role(role)
-                        .privilege(privilege)
-                        .build();
+                User user = new User(id_users,login,pass,role,privilege);
 
                 users.add(user);
             }
@@ -79,7 +70,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
 
         try {
-            conn = getConnection();
+            conn = DBConnector.getConnection();
             stmt = conn.prepareStatement(FIND_BY_ID);
             stmt.setInt(1, id_users);
 
@@ -92,13 +83,14 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = User._myuserbuilder()
+                User user = new User(id_users,login,pass,role,privilege);
+                /*User user = User._myuserbuilder()
                         .id_users(id_users)
                         .login(login)
                         .pass(pass)
                         .role(role)
                         .privilege(privilege)
-                        .build();
+                        .build();*/
 
                 return user;
 
@@ -123,10 +115,10 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
 
         try {
-            conn = getConnection();
+            conn = DBConnector.getConnection();
 
             stmt = conn.prepareStatement(FIND_BY_LOGIN);
-            stmt.setString(1, java.lang.String.valueOf(login));
+            stmt.setString(1, String.valueOf(login));
 
             System.out.println("find by login method invokation");
             ResultSet rs = stmt.executeQuery();
@@ -138,13 +130,14 @@ public class UserDaoImpl implements UserDao {
                 String role = rs.getString("role");
                 String privilege = rs.getString("privilege");
 
-                User user = User._myuserbuilder()
+                User user = new User(id_users,login,pass,role,privilege);
+                /*User user = User._myuserbuilder()
                         .id_users(id_users)
                         .login(login)
                         .pass(pass)
                         .role(role)
                         .privilege(privilege)
-                        .build();
+                        .build();*/
 
                 return user;
             } else {
@@ -167,7 +160,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
 
         try {
-            conn = getConnection();
+            conn = DBConnector.getConnection();
             stmt = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, user.getLogin());
             stmt.setString(2, user.getPass());
@@ -198,7 +191,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
 
         try {
-            conn = getConnection();
+            conn = DBConnector.getConnection();
             stmt = conn.prepareStatement(UPDATE);
 
             stmt.setString(1, user.getLogin());
@@ -227,7 +220,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
 
         try {
-            conn = getConnection();
+            conn = DBConnector.getConnection();
             stmt = conn.prepareStatement(DELETE);
             stmt.setInt(1, id_users);
 
@@ -245,46 +238,11 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public Connection getConnection() {
+    public static User getById(int id) {
+        return new UserDaoImpl().findById(id);
+    }
 
-        System.out.println("Connecting to database..");
-        Connection conn = null;
-
-        try {
-            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-            InputStream input = classLoader.getResourceAsStream("config_test.properties");
-            Properties prop = new Properties();
-
-            try {
-                prop.load(input);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager
-                    .getConnection(
-                            (prop.getProperty("url")),
-                            (prop.getProperty("dbuser")),
-                            (prop.getProperty("dbpassword")));
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Creating statement to db_ees_test database...");
-        Statement stmt = null;
-
-        try {
-            if (conn != null) {
-                stmt = conn.createStatement();
-                System.out.println("CreateStatement OK");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return conn;
+    public static User getByLogin(String login) {
+        return new UserDaoImpl().findByLogin(login);
     }
 }

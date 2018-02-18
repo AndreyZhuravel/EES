@@ -11,12 +11,10 @@ import java.sql.SQLException;
 @Setter
 @Builder(builderMethodName = "_myquerybuilder")
 
-public class Query {
+public class QueryThird {
 
-    private int id_users;
     private String login;
     private int leadid;
-    private int id_table_address;
     private long pos;
     private String address_reg;
     private String address_fact;
@@ -24,18 +22,15 @@ public class Query {
     private String region;
     private String status;
     private String condition;
-    private int id_table_salesinfo;
 
-    public Query() {}
+    public QueryThird() {
+    }
 
-    public Query(int id_users, String login, int leadid,
-                 int id_table_address, long pos, String address_reg,
-                 String address_fact, String shop, String region,
-                 String status, String condition, int id_table_salesinfo) {
-        this.id_users = id_users;
+    public QueryThird(String login, int leadid, long pos,
+                      String address_reg, String address_fact, String shop,
+                      String region, String status, String condition) {
         this.login = login;
         this.leadid = leadid;
-        this.id_table_address = id_table_address;
         this.pos = pos;
         this.address_reg = address_reg;
         this.address_fact = address_fact;
@@ -43,15 +38,22 @@ public class Query {
         this.region = region;
         this.status = status;
         this.condition = condition;
-        this.id_table_salesinfo = id_table_salesinfo;
     }
 
-    public int getId_table_address() {
-        return id_table_address;
+    public String getLogin() {
+        return login;
     }
 
-    public void setId_table_address(int id_table_address) {
-        this.id_table_address = id_table_address;
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public int getLeadid() {
+        return leadid;
+    }
+
+    public void setLeadid(int leadid) {
+        this.leadid = leadid;
     }
 
     public long getPos() {
@@ -110,44 +112,10 @@ public class Query {
         this.condition = condition;
     }
 
-    public int getId_table_salesinfo() {
-        return id_table_salesinfo;
-    }
-
-    public void setId_table_salesinfo(int id_table_salesinfo) {
-        this.id_table_salesinfo = id_table_salesinfo;
-    }
-
-    public int getId_users() {
-        return id_users;
-    }
-
-    public void setId_users(int id_users) {
-        this.id_users = id_users;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public int getLeadid() {
-        return leadid;
-    }
-
-    public void setLeadid(int leadid) {
-        this.leadid = leadid;
-    }
-
-    public static Query createQuery(ResultSet rs) throws SQLException {
-        Query query = new Query();
-        query.setId_users(rs.getInt("id_users"));
+    public static QueryThird createThirdQuery(ResultSet rs) throws SQLException {
+        QueryThird query = new QueryThird();
         query.setLogin(rs.getString("login"));
         query.setLeadid(rs.getInt("leadid"));
-        query.setId_table_address(rs.getInt("id_table_address"));
         query.setPos(rs.getLong("pos"));
         query.setAddress_reg(rs.getString("address_reg"));
         query.setAddress_fact(rs.getString("address_fact"));
@@ -155,17 +123,14 @@ public class Query {
         query.setRegion(rs.getString("region"));
         query.setStatus(rs.getString("status"));
         query.setCondition(rs.getString("condition"));
-        query.setId_table_salesinfo(rs.getInt("id_table_salesinfo"));
         return query;
     }
 
     @Override
     public String toString() {
-        return "Query{" +
-                "id_users=" + id_users +
-                ", login='" + login + '\'' +
+        return "QueryThird{" +
+                "login='" + login + '\'' +
                 ", leadid=" + leadid +
-                ", id_table_address=" + id_table_address +
                 ", pos=" + pos +
                 ", address_reg='" + address_reg + '\'' +
                 ", address_fact='" + address_fact + '\'' +
@@ -173,7 +138,6 @@ public class Query {
                 ", region='" + region + '\'' +
                 ", status='" + status + '\'' +
                 ", condition='" + condition + '\'' +
-                ", id_table_salesinfo=" + id_table_salesinfo +
                 '}';
     }
 }

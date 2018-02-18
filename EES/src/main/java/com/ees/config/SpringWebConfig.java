@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "com.ees.web" })
-
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -28,5 +27,4 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
-
 }

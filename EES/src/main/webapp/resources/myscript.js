@@ -1,13 +1,17 @@
 //Main call functions
      $(document).ready(function() {
 
+         $("#button_getsqlfour").click(function() {
+             QueryThirdServlet();
+         });
+
          $("#button_getsqlthree").click(function() {
-          alert( "Кнопка должна вызывать SQL #3" );
+             QuerySecondServlet();
          });
 
          //This button present on main.jsp
          $("#button_getsqltwo").click(function() {
-         QueryServlet();
+             QueryOneServlet();
          });
 
          //This button present on main.jsp
@@ -123,54 +127,15 @@ function getStoredValue(key) {
 };
 
 /////////////////////////////////////////
-//This function must call web.controller.AjaxController, but it does not work.
-function TestAjaxController() {
-
-		var search = {}
-		search["username"] = document.getElementById("login").value;
-
-		$.ajax({
-			type : "POST",
-			contentType : "application/json",
-			url : "/helloWorld",
-			data : JSON.stringify(search),
-			dataType : 'json',
-			timeout : 100000,
-			success : function(data) {
-				console.log("SUCCESS: ", data);
-				display(data);
-			},
-			error : function(e) {
-				console.log("ERROR: ", e);
-				display(e);
-			},
-			done : function(e) {
-				console.log("DONE");
-				enableSearchButton(true);
-			}
-		});
-
-	}
-
-		function enableSearchButton(flag) {
-    		$("#btn-search").prop("disabled", flag);
-    	}
-
-    	function display(data) {
-    		var json = "<h4>Ajax Response</h4><pre>"
-    				+ JSON.stringify(data, null, 4) + "</pre>";
-    		$('#feedback').html(json);
-    	}
-/////////////////////////////////////////
 //This function must call QueryServlet.
-function QueryServlet(){
+function QueryOneServlet(){
 
     var userObj = {
           "login":document.getElementById("login").value,
     }
 
     var userJson = JSON.stringify(userObj);
-    var url = "QueryServlet";
+    var url = "QueryOneServlet";
 
 $.ajax
 ({
@@ -180,12 +145,108 @@ $.ajax
     contentType: "application/json",
     success: function(result)
     {
+          var rows = result.split(";");
           var fields = result.split(","); // RESULT
           var Id_users = fields[0] + '<br>';
           var login = fields[1] + '<br>';
           var leadid = fields[2] + '<br>';
-          result = Id_users + login + leadid;
+          var id_table_address = fields[3] + '<br>';
+          var pos = fields[4] + '<br>';
+          var address_reg = fields[5] + '<br>';
+          var address_fact = fields[6] + '<br>';
+          var shop = fields[7] + '<br>';
+          var region = fields[8] + '<br>';
+          var status = fields[9] + '<br>';
+          var condition = fields[10] + '<br>';
+          var id_table_salesinfo = fields[11] + '<br>';
+          result = Id_users + login + leadid + id_table_address + pos + address_reg
+              + address_fact + shop + region + status + condition + id_table_salesinfo;
           $('#div_result').html('<strong>' + result + '</strong>');
+            }
+        }
+    );
+};
+
+/////////////////////////////////////////
+//This function must call QuerySecondServlet.
+function QuerySecondServlet(){
+
+    var userObj = {
+        "login":document.getElementById("login").value,
+    }
+
+    var userJson = JSON.stringify(userObj);
+    var url = "QuerySecondServlet";
+
+    $.ajax
+    ({
+            url: url,
+            method: "post",
+            data: userJson,
+            contentType: "application/json",
+            success: function(result)
+
+            {
+//            var rows = result.split(";");
+//            var index;
+//            for (index = 0; index < rows.length; ++index)
+//            {
+//            console.log(rows[index])
+           var fields = result.split(";"); // RESULT
+           var leadid = fields[0] + '<br>';
+           var is_mist_adr = fields[1] + '<br>';
+           var is_mist_shop = fields[2] + '<br>';
+           var is_mist_phone = fields[3] + '<br>';
+           result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
+           $('#div_result').html('<strong>' + result + '</strong>');
+            }
+
+//                var fields = result.split(","); // RESULT
+//                var leadid = fields[0] + '<br>';
+//                var is_mist_adr = fields[1] + '<br>';
+//                var is_mist_shop = fields[2] + '<br>';
+//                var is_mist_phone = fields[3] + '<br>';
+//                result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
+//                $('#div_result').html('<strong>' + result + '</strong>');
+
+
+        }
+    );
+};
+
+/////////////////////////////////////////
+//This function must call QueryServlet.
+function QueryThirdServlet(){
+
+    var userObj = {
+        "login":document.getElementById("login").value,
+    }
+
+    var userJson = JSON.stringify(userObj);
+    var url = "QueryThirdServlet";
+
+    $.ajax
+    ({
+            url: url,
+            method: "post",
+            data: userJson,
+            contentType: "application/json",
+            success: function(result)
+            {
+                var rows = result.split(";");
+                var fields = result.split(","); // RESULT
+                var login = fields[0] + '<br>';
+                var leadid = fields[1] + '<br>';
+                var pos = fields[2] + '<br>';
+                var address_reg = fields[3] + '<br>';
+                var address_fact = fields[4] + '<br>';
+                var shop = fields[5] + '<br>';
+                var region = fields[6] + '<br>';
+                var status = fields[7] + '<br>';
+                var condition = fields[8] + '<br>';
+                result =  login + leadid + pos + address_reg
+                    + address_fact + shop + region + status + condition;
+                $('#div_result').html('<strong>' + result + '</strong>');
             }
         }
     );

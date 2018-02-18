@@ -1,10 +1,12 @@
 <%@page session="false"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <title>Home Page</title>
 
@@ -32,6 +34,10 @@
 
 <p>
     <button id="button_getsqlthree">Simple SQL #3</button>
+</p>
+
+<p>
+    <button id="button_getsqlfour">Simple SQL #4</button>
 </p>
 
 <div id="div_result">

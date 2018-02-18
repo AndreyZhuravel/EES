@@ -74,8 +74,7 @@ public class UserServlet extends HttpServlet {
             else {
                 if (pass.equals("")) {
 
-                    UserDao dao = new UserDaoImpl();
-                    User user = dao.findByLogin(login); /* call findByLogin method*/
+                    User user = UserDaoImpl.getByLogin(login); /* call findByLogin method*/
 
                     PrintWriter out = response.getWriter();
 
@@ -86,9 +85,7 @@ public class UserServlet extends HttpServlet {
                     out.println(html);
 
                 } else {
-
-                    UserDao dao = new UserDaoImpl();
-                    User user = dao.findByLogin(login); /* call findByLogin method*/
+                    User user = UserDaoImpl.getByLogin(login); /* call findByLogin method*/
 
                     if ((login.equals(user.getLogin())) && (pass.equals(user.getPass()))) {
                         html = "100"; /* Successfull user entering*/
