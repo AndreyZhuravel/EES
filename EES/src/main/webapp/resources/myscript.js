@@ -1,21 +1,21 @@
 //Main call functions
      $(document).ready(function() {
 
-         $("#button_getsqlfour").click(function() {
-             QueryThirdServlet();
-         });
-
-         $("#button_getsqlthree").click(function() {
-             QuerySecondServlet();
-         });
-
          //This button present on main.jsp
-         $("#button_getsqltwo").click(function() {
+         $("#button_getsqlone").click(function() {
              QueryOneServlet();
          });
 
+         $("#button_getsqltwo").click(function() {
+             QuerySecondServlet();
+         });
+
+         $("#button_getsqlthree").click(function() {
+             QueryThirdServlet();
+         });
+
          //This button present on main.jsp
-         $("#button_getsqlone").click(function() {
+         $("#button_getsqluser").click(function() {
 
          if (document.getElementById("login").value == null || document.getElementById("login").value === "") {
             alert( 'Please input login. Password must be empty' );
@@ -127,7 +127,7 @@ function getStoredValue(key) {
 };
 
 /////////////////////////////////////////
-//This function must call QueryServlet.
+//This function must call QueryFirstServlet.
 function QueryOneServlet(){
 
     var userObj = {
@@ -135,7 +135,7 @@ function QueryOneServlet(){
     }
 
     var userJson = JSON.stringify(userObj);
-    var url = "QueryOneServlet";
+    var url = "QueryFirstServlet";
 
 $.ajax
 ({
@@ -145,23 +145,30 @@ $.ajax
     contentType: "application/json",
     success: function(result)
     {
+    if ((result) == 101) {
+    result =  "Please input login";
+    $('#div_result').html('<strong>' + result + '</strong>');
+    }
+    else {
           var rows = result.split(";");
           var fields = result.split(","); // RESULT
           var Id_users = fields[0] + '<br>';
           var login = fields[1] + '<br>';
           var leadid = fields[2] + '<br>';
-          var id_table_address = fields[3] + '<br>';
-          var pos = fields[4] + '<br>';
-          var address_reg = fields[5] + '<br>';
-          var address_fact = fields[6] + '<br>';
-          var shop = fields[7] + '<br>';
-          var region = fields[8] + '<br>';
-          var status = fields[9] + '<br>';
-          var condition = fields[10] + '<br>';
-          var id_table_salesinfo = fields[11] + '<br>';
-          result = Id_users + login + leadid + id_table_address + pos + address_reg
-              + address_fact + shop + region + status + condition + id_table_salesinfo;
+//        var id_table_address = fields[3] + '<br>';
+//        var pos = fields[4] + '<br>';
+//        var address_reg = fields[5] + '<br>';
+//        var address_fact = fields[6] + '<br>';
+//        var shop = fields[7] + '<br>';
+//        var region = fields[8] + '<br>';
+//        var status = fields[9] + '<br>';
+//        var condition = fields[10] + '<br>';
+//        var id_table_salesinfo = fields[11] + '<br>';
+          result = Id_users + login + leadid;
+//          + id_table_address + pos + address_reg
+//              + address_fact + shop + region + status + condition + id_table_salesinfo;
           $('#div_result').html('<strong>' + result + '</strong>');
+              }
             }
         }
     );
@@ -187,39 +194,39 @@ function QuerySecondServlet(){
             success: function(result)
 
             {
-//            var rows = result.split(";");
-//            var index;
-//            for (index = 0; index < rows.length; ++index)
+            if ((result) == 102)
+                {
+                result =  "Please input login";
+                $('#div_result').html('<strong>' + result + '</strong>');
+                }
+            else
+            {
+//             var fields = result.split(";"); // RESULT
+//             for (var i = 0; i < fields.length; ++i)
 //            {
-//            console.log(rows[index])
-           var fields = result.split(";"); // RESULT
-           var leadid = fields[0] + '<br>';
-           var is_mist_adr = fields[1] + '<br>';
-           var is_mist_shop = fields[2] + '<br>';
-           var is_mist_phone = fields[3] + '<br>';
-           result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
-           $('#div_result').html('<strong>' + result + '</strong>');
-            }
+//                var counter = fields[i];
+//                alert(counter);
 
-//                var fields = result.split(","); // RESULT
-//                var leadid = fields[0] + '<br>';
-//                var is_mist_adr = fields[1] + '<br>';
-//                var is_mist_shop = fields[2] + '<br>';
-//                var is_mist_phone = fields[3] + '<br>';
-//                result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
-//                $('#div_result').html('<strong>' + result + '</strong>');
-
+                var fields = result.split(";"); // RESULT
+                var leadid = fields[0] + '<br>';
+                var is_mist_adr = fields[1] + '<br>';
+                var is_mist_shop = fields[2] + '<br>';
+                var is_mist_phone = fields[3] + '<br>';
+                result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
+                $('#div_result').html('<strong>' + result + '</strong>');
+             }
 
         }
-    );
+    });
 };
 
 /////////////////////////////////////////
-//This function must call QueryServlet.
+//This function must call QueryThirdServlet.
 function QueryThirdServlet(){
 
     var userObj = {
         "login":document.getElementById("login").value,
+        "lead":document.getElementById("lead").value,
     }
 
     var userJson = JSON.stringify(userObj);
@@ -233,6 +240,11 @@ function QueryThirdServlet(){
             contentType: "application/json",
             success: function(result)
             {
+            if ((result) == 103) {
+            result =  "Please input login and leadid";
+            $('#div_result').html('<strong>' + result + '</strong>');
+            }
+            else {
                 var rows = result.split(";");
                 var fields = result.split(","); // RESULT
                 var login = fields[0] + '<br>';
@@ -247,7 +259,7 @@ function QueryThirdServlet(){
                 result =  login + leadid + pos + address_reg
                     + address_fact + shop + region + status + condition;
                 $('#div_result').html('<strong>' + result + '</strong>');
+                }
             }
-        }
-    );
+    });
 };

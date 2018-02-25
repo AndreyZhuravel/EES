@@ -40,7 +40,7 @@ public class QuerySecondDaoImpl implements QuerySecondDao {
             stmt = conn.prepareStatement(SECOND_QUERY);
             stmt.setString(1, String.valueOf(login));
 
-            System.out.println("test sql method invokation");
+            System.out.println("Successfully call sql method for getting all infromation about all errors in all databases");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {

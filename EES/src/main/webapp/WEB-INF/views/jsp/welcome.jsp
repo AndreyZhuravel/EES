@@ -243,7 +243,7 @@
     </header>
     <div class="feature">
         <div class="feature-inner">
-            <h1>Test Project</h1>
+            <h1>EES Project</h1>
         </div>
     </div>
 
@@ -364,7 +364,7 @@
     <footer id="footer">
 
         <div id="footer-inner">
-            <p>&copy; Copyright <a href="#">Your Site TESTTTTTT</a> &#124; <a href="#">Terms of Use</a> &#124; <a href="#">Privacy Policy</a></p>
+            <p>&copy; Copyright <a href="#">EES Project</a> &#124; <a href="#">Terms of Use</a> &#124; <a href="#">Privacy Policy</a></p>
             <div class="clr"></div>
         </div>
     </footer>

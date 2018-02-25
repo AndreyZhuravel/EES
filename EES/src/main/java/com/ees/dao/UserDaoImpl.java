@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
             conn = DBConnector.getConnection();
             stmt = conn.prepareStatement(FIND_ALL);
 
-            System.out.println("find all method invokation");
+            System.out.println("Successfully call method with name 'Find all users'");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -120,7 +120,7 @@ public class UserDaoImpl implements UserDao {
             stmt = conn.prepareStatement(FIND_BY_LOGIN);
             stmt.setString(1, String.valueOf(login));
 
-            System.out.println("find by login method invokation");
+            System.out.println("Successfully call method with name 'Find by login'");
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {

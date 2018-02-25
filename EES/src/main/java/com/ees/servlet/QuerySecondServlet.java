@@ -42,22 +42,35 @@ public class QuerySecondServlet extends HttpServlet {
             String login = jsonObject.getString("login");
             String html = "";
 
-            List<QuerySecond> list = QuerySecondDaoImpl.executeQuery(login); /* call findall method*/
+            // Invoke method for check if user fill field login
+            if (login.equals(""))
 
-            PrintWriter out = response.getWriter();
-
-            Iterator<QuerySecond> iqs = list.listIterator();
-            while (iqs.hasNext()) {
-                QuerySecond q = iqs.next();
-                html = html + "LeadId:" + q.getLeadid()
-                        + ",Is_mist_adr:" + q.getIs_mist_adr()
-                        + ",Is_mist_shop:" + q.getIs_mist_shop()
-                        + ",Is_mist_phone:" + q.getIs_mist_phone() + ";";
+            {
+                PrintWriter out = response.getWriter();
+                System.out.println("Need login and lead for this sql request");
+                html = "102";
+                out.println(html);
             }
+            else
+            {
 
-            System.out.println(html);
+                List<QuerySecond> list = QuerySecondDaoImpl.executeQuery(login); /* call findall method*/
+                PrintWriter out = response.getWriter();
+                Iterator<QuerySecond> iqs = list.listIterator();
 
-            out.println(html);
+                while (iqs.hasNext()) {
+                    QuerySecond q = iqs.next();
+                    System.out.println(q);
+                    html = html + "LeadId:" + q.getLeadid()
+                            + ",Is_mist_adr:" + q.getIs_mist_adr()
+                            + ",Is_mist_shop:" + q.getIs_mist_shop()
+                            + ",Is_mist_phone:" + q.getIs_mist_phone() + ";";
+                }
+
+                System.out.println(html);
+
+                out.println(html);
+            }
 
         } catch (JSONException e) {
             //throw new IOException("Error parsing JSON request string");

@@ -16,32 +16,39 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/myscript.js" charset="UTF-8"></script>
 
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+     CallUserServlet()
+  });
+</script>
+
+
 <p>
     User Profile Page
+
 </p>
 
 <p> Login
     <input type="login" id="login" value="" enabled>
-</p>
-
-<p>
-    <button id="button_getsqlone">Simple SQL #1</button>
-</p>
-
-<p>
-    <button id="button_getsqltwo">Simple SQL #2</button>
-</p>
-
-<p>
-    <button id="button_getsqlthree">Simple SQL #3</button>
-</p>
-
-<p>
-    <button id="button_getsqlfour">Simple SQL #4</button>
+    LeadId
+    <input type="lead" id="lead" value="" enabled>
 </p>
 
 <div id="div_result">
-
 </div>
+
+<p>
+    <button id="button_getsqltwo">Show me all my errors</button>
+</p>
+
+<p>
+    <button id="button_getsqlone">Show me short info about errors in "Address" database</button>
+</p>
+
+<p>
+    <button id="button_getsqlthree">Show me details about errors in "Address" database</button>
+</p>
+
 </body>
 </html>

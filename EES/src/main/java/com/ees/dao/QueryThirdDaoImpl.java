@@ -24,11 +24,11 @@ public class QueryThirdDaoImpl implements QueryThirdDao {
             "INNER JOIN table_address a ON s.id_salesinfo=a.id_table_salesinfo\n" +
             "LEFT JOIN table_users u\n" +
             "ON s.id_users = u.id_users\n" +
-            "WHERE u.login = ?";
+            "WHERE u.login = ? and s.leadid = ?::integer";
 
     //Implementation of methods for get all data from table_address in db_ees_test
 
-    public QueryThird selectThirdQueryData(String login) {
+    public QueryThird selectThirdQueryData(String login, String lead) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -39,8 +39,9 @@ public class QueryThirdDaoImpl implements QueryThirdDao {
 
             stmt = conn.prepareStatement(THIRD_QUERY);
             stmt.setString(1, String.valueOf(login));
+            stmt.setString(2, String.valueOf(lead));
 
-            System.out.println("test sql method invokation");
+            System.out.println("Successfully call sql method for getting detail information about errors in address database");
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -64,7 +65,7 @@ public class QueryThirdDaoImpl implements QueryThirdDao {
         return null;
     }
 
-    public static QueryThird executeQuery(String login) {
-        return new QueryThirdDaoImpl().selectThirdQueryData(login);
+    public static QueryThird executeQuery(String login, String lead) {
+        return new QueryThirdDaoImpl().selectThirdQueryData(login, lead);
     }
 }

@@ -1,8 +1,6 @@
 package com.ees.servlet;
 
 import com.ees.dao.QueryFirstDaoImpl;
-import com.ees.dao.QueryFirstDaoImpl;
-import com.ees.entity.QueryFirst;
 import com.ees.entity.QueryFirst;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,27 +44,37 @@ public class QueryFirstServlet extends HttpServlet {
             String login = jsonObject.getString("login");
             String html = "";
 
-            QueryFirst q = QueryFirstDaoImpl.executeQuery(login); /* call findall method*/
+            // Invoke method for check if user fill field login
+            if (login.equals(""))
 
-            PrintWriter out = response.getWriter();
+            {
+                PrintWriter out = response.getWriter();
+                System.out.println("Need login for this sql request");
+                html = "101";
+                out.println(html);
+            }
+            else {
+                QueryFirst q = QueryFirstDaoImpl.executeQuery(login); /* call findall method*/
 
-            html = "Id_users:" + q.getId_users()
-                    + ",Login:" + q.getLogin()
-                    + ",LeadId:" + q.getLeadid()
-                    + ",Id_table_address:" + q.getId_table_address()
-                    + ",Pos:" + q.getPos()
-                    + ",Address_reg:" + q.getAddress_reg()
-                    + ",Address_fact:" + q.getAddress_fact()
-                    + ",Shop:" + q.getShop()
-                    + ",Region:" + q.getRegion()
-                    + ",Status:" + q.getStatus()
-                    + ",Condition:" + q.getCondition()
-                    + ",Id_table_sales_info:" + q.getId_table_salesinfo();
+                PrintWriter out = response.getWriter();
 
-            System.out.println(html);
+                html = "Id_users:" + q.getId_users()
+                        + ",Login:" + q.getLogin()
+                        + ",LeadId:" + q.getLeadid();
+//                    + ",Id_table_address:" + q.getId_table_address()
+//                    + ",Pos:" + q.getPos()
+//                    + ",Address_reg:" + q.getAddress_reg()
+//                    + ",Address_fact:" + q.getAddress_fact()
+//                    + ",Shop:" + q.getShop()
+//                    + ",Region:" + q.getRegion()
+//                    + ",Status:" + q.getStatus()
+//                    + ",Condition:" + q.getCondition()
+//                    + ",Id_table_sales_info:" + q.getId_table_salesinfo();
 
-            out.println(html);
+                System.out.println(html);
 
+                out.println(html);
+            }
         } catch (JSONException e) {
             //throw new IOException("Error parsing JSON request string");
         }

@@ -38,25 +38,37 @@ public class QueryThirdServlet extends HttpServlet {
             JSONObject jsonObject = new JSONObject(sb.toString());
 
             String login = jsonObject.getString("login");
+            String lead = jsonObject.getString("lead");
             String html = "";
 
-            QueryThird q = QueryThirdDaoImpl.executeQuery(login); /* call findall method*/
+            // Invoke method for check if user fill field login and field lead
+            if (login.equals("") || lead.equals(""))
 
-            PrintWriter out = response.getWriter();
+            {
+                PrintWriter out = response.getWriter();
+                System.out.println("Need login and lead for this sql request");
+                html = "103";
+                out.println(html);
+            }
+            else {
+                QueryThird q = QueryThirdDaoImpl.executeQuery(login, lead); /* call findall method*/
 
-            html = "Login:" + q.getLogin()
-                    + ",LeadId:" + q.getLeadid()
-                    + ",Pos:" + q.getPos()
-                    + ",Address_reg:" + q.getAddress_reg()
-                    + ",Address_fact:" + q.getAddress_fact()
-                    + ",Shop:" + q.getShop()
-                    + ",Region:" + q.getRegion()
-                    + ",Status:" + q.getStatus()
-                    + ",Condition:" + q.getCondition();
+                PrintWriter out = response.getWriter();
 
-            System.out.println(html);
+                html = "Login:" + q.getLogin()
+                        + ",LeadId:" + q.getLeadid()
+                        + ",Pos:" + q.getPos()
+                        + ",Address_reg:" + q.getAddress_reg()
+                        + ",Address_fact:" + q.getAddress_fact()
+                        + ",Shop:" + q.getShop()
+                        + ",Region:" + q.getRegion()
+                        + ",Status:" + q.getStatus()
+                        + ",Condition:" + q.getCondition();
 
-            out.println(html);
+                System.out.println(html);
+
+                out.println(html);
+            }
 
         } catch (JSONException e) {
             //throw new IOException("Error parsing JSON request string");
