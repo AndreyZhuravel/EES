@@ -63,6 +63,7 @@
         <servlet-name>QueryThirdServlet</servlet-name>
         <url-pattern>/QueryThirdServlet</url-pattern>
     </servlet-mapping>
+
     <!--</servlet-mapping>-->
 
 </web-app>

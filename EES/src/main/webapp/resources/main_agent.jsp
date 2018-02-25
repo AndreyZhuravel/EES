@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-    <title>Home Page</title>
+    <title>User Home Page</title>
 
 </head>
 
@@ -23,16 +23,15 @@
   });
 </script>
 
-
 <p>
     User Profile Page
-
 </p>
 
 <p> Login
     <input type="login" id="login" value="" enabled>
     LeadId
     <input type="lead" id="lead" value="" enabled>
+
 </p>
 
 <div id="div_result">

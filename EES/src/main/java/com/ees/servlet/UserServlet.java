@@ -3,7 +3,6 @@ package com.ees.servlet;
 import com.ees.dao.UserDao;
 import com.ees.dao.UserDaoImpl;
 import com.ees.entity.User;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -90,12 +89,21 @@ public class UserServlet extends HttpServlet {
                     User user = UserDaoImpl.getByLogin(login); /* call findByLogin method*/
 
                     if ((login.equals(user.getLogin())) && (pass.equals(user.getPass()))) {
-                        System.out.println("Successfull user authorization");
-                        html = "100"; /* Successfull user entering*/
+                        System.out.println(user.getLogin());
+
+                        if (user.getLogin().equals("andrey")) {
+                            System.out.println("Admin authorization");
+                            html = "777"; /* Successfull user entering*/
+                        }
+                        else {
+                            System.out.println("Successfull user authorization");
+                            html = "100"; /* Successfull user entering*/
+                        }
+
                     } else {
                         System.out.println("Login or password for this user is incorrect");
                         html = "Authorization denied. Login or password is incorrect";
-                    }
+                        }
 
                     PrintWriter out = response.getWriter();
                     out.println(html);

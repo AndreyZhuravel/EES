@@ -1,9 +1,19 @@
-//Main call functions
+//Calling functions
      $(document).ready(function() {
 
-         //This button present on main.jsp
+ //These buttons present on main_agent.jsp \ main_admin.jsp
+
+          $("#button_admin").click(function() {
+         if (document.getElementById("pass").value == null || document.getElementById("pass").value === "" || document.getElementById("login").value == null || document.getElementById("login").value === "") {
+           alert( 'Please input login or password' );
+         } else {
+			  var admin = "admin";
+			  CallUserServlet(admin);
+         }
+         });
+
          $("#button_getsqlone").click(function() {
-             QueryOneServlet();
+             QueryFirstServlet();
          });
 
          $("#button_getsqltwo").click(function() {
@@ -14,33 +24,40 @@
              QueryThirdServlet();
          });
 
-         //This button present on main.jsp
-         $("#button_getsqluser").click(function() {
-
-         if (document.getElementById("login").value == null || document.getElementById("login").value === "") {
-            alert( 'Please input login. Password must be empty' );
-
-         } else {
-           CallUserServlet();
-         }
-
+		 $("#button_adduser").click(function() {
+             AddUser();
          });
 
-         //This button present on welcome.jsp and check user login and password
+//---------------------------------------------------------
+//         $("#button_getsqluser").click(function() {
+//
+//         if (document.getElementById("login").value == null || document.getElementById("login").value === "") {
+//            alert( 'Please input login. Password must be empty' );
+//
+//         } else {
+//           CallUserServlet();
+//         }
+//
+//         });
+
+//---------------------------------------------------------
+//This button present on welcome.jsp and check user login and password
          $("#button_checkuseraccess").click(function() {
 
          if (document.getElementById("pass").value == null || document.getElementById("pass").value === "" || document.getElementById("login").value == null || document.getElementById("login").value === "") {
            alert( 'Please input login or password' );
          } else {
-           CallUserServlet();
+			  var admin = "agent";
+           CallUserServlet(admin);
          }
 
          });
      });
 
-/////////////////////////////////////////
+//---------------------------------------------------------
 //This function call UserServlet
-function CallUserServlet(){
+function CallUserServlet(val){
+	var admin = val;
 
 if (document.getElementById('pass')) {
       var userObj = {
@@ -67,25 +84,57 @@ $.ajax
     {
 
     if ((result) == 100) {
+		if (admin == "admin") {
+		result = "You have no rights to User Management system";
+		$('#div_result').html('<strong>' + result + '</strong>');
+		}
+	else
+	{
     var temp = document.getElementById("login").value;
     storeValue('Temp', temp);
+    $.get('resources/main_agent.jsp', function(result)
 
-    $.get('resources/main.jsp', function(result)
     {
-
     $('#contentbar').html(result);
     getStoredValue(temp);
     document.getElementById("login").value = temp;
+	});
+    }
+    }
 
+    else
+	{
+    if ((result) == 777) {
+		if (admin == "admin") {
+		var temp = document.getElementById("login").value;
+        storeValue('Temp', temp);
+        $.get('resources/main_admin.jsp', function(result)
+
+        {
+        $('#contentbar').html(result);
+        getStoredValue(temp);
+        document.getElementById("login").value = temp;
+    });
+	}
+
+	else
+	{
+		var temp = document.getElementById("login").value;
+        storeValue('Temp', temp);
+        $.get('resources/main_agent.jsp', function(result)
+
+        {
+        $('#contentbar').html(result);
+        getStoredValue(temp);
+        document.getElementById("login").value = temp;
+        });
     }
-    );
-    }
+	}
     else {
 
         if(result.indexOf(",") == -1) // Checking for comma in result
         {
         $('#div_result').html('<strong>' + result + '</strong>');
-
         }
         else {
 
@@ -94,16 +143,17 @@ $.ajax
           var Role = fields[1] + '<br>';
           var Privilege = fields[2] + '<br>';
           result = Id_users + Role + Privilege;
-          $('#div_result').html('<strong>' + result + '</strong>');
+          $('#div_role_result').html('<strong>' + result + '</strong>');
             }
         }
-    }
+	}
+	}
 });
 };
 
-/////////////////////////////////////////
+//---------------------------------------------------------
 //This 3 functions below save user login in local storage
-//and save it when we move from welcome.jsp to main.jsp
+//and save it when we move from welcome.jsp to main_agent.jsp \ main_admin.jsp
 
 function buttonClick(temp) {
     temp = temp;
@@ -126,9 +176,9 @@ function getStoredValue(key) {
     }
 };
 
-/////////////////////////////////////////
-//This function must call QueryFirstServlet.
-function QueryOneServlet(){
+//---------------------------------------------------------
+//This function call QueryFirstServlet.
+function QueryFirstServlet(){
 
     var userObj = {
           "login":document.getElementById("login").value,
@@ -174,8 +224,8 @@ $.ajax
     );
 };
 
-/////////////////////////////////////////
-//This function must call QuerySecondServlet.
+//---------------------------------------------------------
+//This function call QuerySecondServlet.
 function QuerySecondServlet(){
 
     var userObj = {
@@ -206,7 +256,6 @@ function QuerySecondServlet(){
 //            {
 //                var counter = fields[i];
 //                alert(counter);
-
                 var fields = result.split(";"); // RESULT
                 var leadid = fields[0] + '<br>';
                 var is_mist_adr = fields[1] + '<br>';
@@ -220,7 +269,7 @@ function QuerySecondServlet(){
     });
 };
 
-/////////////////////////////////////////
+//---------------------------------------------------------
 //This function must call QueryThirdServlet.
 function QueryThirdServlet(){
 
@@ -262,4 +311,32 @@ function QueryThirdServlet(){
                 }
             }
     });
+};
+
+
+//---------------------------------------------------------
+function AddUser(){
+
+var userObj =
+	{
+          "login":document.getElementById("loginnew").value,
+          "pass": document.getElementById("passnew").value,
+		  "role": document.getElementById("selRole").value,
+		  "privilege": document.getElementById("selPriv").value
+    }
+
+    var userJson = JSON.stringify(userObj);
+    var url = "AddUserServlet";
+
+$.ajax
+({
+    url: url,
+    method: "post",
+    data: userJson,
+    contentType: "application/json",
+    success: function(result)
+    {
+    $('#div_result').html('<strong>' + result + '</strong>');
+	}
+});
 };
