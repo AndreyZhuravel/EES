@@ -1,7 +1,9 @@
 package com.ees.servlet;
 
-import com.ees.dao.QueryDaoImpl;
-import com.ees.entity.Query;
+import com.ees.dao.QueryFirstDaoImpl;
+import com.ees.dao.QueryFirstDaoImpl;
+import com.ees.entity.QueryFirst;
+import com.ees.entity.QueryFirst;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,7 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class QueryOneServlet extends HttpServlet {
+public class QueryFirstServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,7 +46,7 @@ public class QueryOneServlet extends HttpServlet {
             String login = jsonObject.getString("login");
             String html = "";
 
-            Query q = QueryDaoImpl.executeQuery(login); /* call findall method*/
+            QueryFirst q = QueryFirstDaoImpl.executeQuery(login); /* call findall method*/
 
             PrintWriter out = response.getWriter();
 

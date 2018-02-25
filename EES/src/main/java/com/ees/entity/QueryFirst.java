@@ -11,7 +11,7 @@ import java.sql.SQLException;
 @Setter
 @Builder(builderMethodName = "_myquerybuilder")
 
-public class Query {
+public class QueryFirst {
 
     private int id_users;
     private String login;
@@ -26,9 +26,9 @@ public class Query {
     private String condition;
     private int id_table_salesinfo;
 
-    public Query() {}
+    public QueryFirst() {}
 
-    public Query(int id_users, String login, int leadid,
+    public QueryFirst(int id_users, String login, int leadid,
                  int id_table_address, long pos, String address_reg,
                  String address_fact, String shop, String region,
                  String status, String condition, int id_table_salesinfo) {
@@ -142,8 +142,8 @@ public class Query {
         this.leadid = leadid;
     }
 
-    public static Query createQuery(ResultSet rs) throws SQLException {
-        Query query = new Query();
+    public static QueryFirst createQuery(ResultSet rs) throws SQLException {
+        QueryFirst query = new QueryFirst();
         query.setId_users(rs.getInt("id_users"));
         query.setLogin(rs.getString("login"));
         query.setLeadid(rs.getInt("leadid"));

@@ -1,6 +1,6 @@
 package com.ees.dao;
 
-import com.ees.entity.Query;
+import com.ees.entity.QueryFirst;
 import com.ees.services.DBConnector;
 
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class QueryDaoImpl implements QueryDao {
+public class QueryFirstDaoImpl {
 
     private static final String FIND_BY_LOGIN_TEST = "" +
             "SELECT table_users.id_users, table_users.login, table_salesinfo.leadid, table_address.* " +
@@ -19,7 +19,7 @@ public class QueryDaoImpl implements QueryDao {
 
     //Implementation of methods for get all data from table_address in db_ees_test
 
-    public Query selectOneQueryData(String login) {
+    public QueryFirst selectOneQueryData(String login) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -36,7 +36,7 @@ public class QueryDaoImpl implements QueryDao {
 
             while (rs.next()) {
 
-                Query query = Query.createQuery(rs);
+                QueryFirst query = QueryFirst.createQuery(rs);
 
                 return query;
 
@@ -55,7 +55,7 @@ public class QueryDaoImpl implements QueryDao {
         return null;
     }
 
-    public static Query executeQuery(String login) {
-        return new QueryDaoImpl().selectOneQueryData(login);
+    public static QueryFirst executeQuery(String login) {
+        return new QueryFirstDaoImpl().selectOneQueryData(login);
     }
 }
