@@ -28,6 +28,13 @@
              AddUser();
          });
 
+         $("#button_updateuser").click(function() {
+             UpdateUser();
+         });
+
+         $("#button_deleteduser").click(function() {
+             DeleteUser();
+         });
 //---------------------------------------------------------
 //         $("#button_getsqluser").click(function() {
 //
@@ -313,30 +320,49 @@ function QueryThirdServlet(){
     });
 };
 
-
 //---------------------------------------------------------
 function AddUser(){
 
-var userObj =
-	{
-          "login":document.getElementById("loginnew").value,
-          "pass": document.getElementById("passnew").value,
-		  "role": document.getElementById("selRole").value,
-		  "privilege": document.getElementById("selPriv").value
-    }
-
-    var userJson = JSON.stringify(userObj);
-    var url = "AddUserServlet";
-
-$.ajax
-({
-    url: url,
-    method: "post",
-    data: userJson,
-    contentType: "application/json",
-    success: function(result)
-    {
+    var result;
+    result = "Functionality in development status";
     $('#div_result').html('<strong>' + result + '</strong>');
-	}
-});
+
+//
+//var userObj =
+//	{
+//          "login":document.getElementById("loginnew").value,
+//          "pass": document.getElementById("passnew").value,
+//		  "role": document.getElementById("selRole").value,
+//		  "privilege": document.getElementById("selPriv").value
+//    }
+//
+//    var userJson = JSON.stringify(userObj);
+//    var url = "AddUserServlet";
+//
+//$.ajax
+//({
+//    url: url,
+//    method: "post",
+//    data: userJson,
+//    contentType: "application/json",
+//    success: function(result)
+//    {
+//    $('#div_result').html('<strong>' + result + '</strong>');
+//	}
+//});
+};
+
+//---------------------------------------------------------
+function DeleteUser(){
+
+    var result;
+    result = "Functionality in development status";
+    $('#div_result').html('<strong>' + result + '</strong>');
+};
+//---------------------------------------------------------
+function UpdateUser(){
+
+    var result;
+    result = "Functionality in development status";
+    $('#div_result').html('<strong>' + result + '</strong>');
 };

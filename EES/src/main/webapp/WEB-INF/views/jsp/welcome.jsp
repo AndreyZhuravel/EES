@@ -242,11 +242,11 @@
                         Password
                         <input type="pass" id="pass" value=""/>
                     </p>
-
-                    <br>
+					<br>
                     <p>
                         <button id="button_checkuseraccess">Login</button>
                     </p>
+
 
                     <div id="div_result">
                     </div>
@@ -259,11 +259,10 @@
                 <div class="widget">
                     <h3>Navigation</h3>
                     <ul>
-                        <li><a href="#" id="button_admin">User Management</a></li>
+                        <li><h3><a href="#" id="button_admin">Add\Update\Delete User</a></li></h3>
                         <li><a href="#">Example Link1</a></li>
                         <li><a href="#">Example Link2</a></li>
 						<li><a href="#">Example Link3</a></li>
-						<li><a href="#">Example Link4</a></li>
                     </ul>
                 </div>
             </nav>

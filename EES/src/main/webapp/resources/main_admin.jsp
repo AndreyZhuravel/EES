@@ -12,6 +12,10 @@
 
 </head>
 
+<style type="text/css">
+			#div_result .widget h3 a { text-decoration:none;}
+</style>
+
 <script src="resources/jquery.1.10.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/myscript.js" charset="UTF-8"></script>
@@ -30,9 +34,6 @@
 <p> Admin Login
     <input type="login" id="login" value=""/>
 </p>
-
-<div id="div_result">
-</div>
 
 <p> User Login
     <input id="loginnew" value=""/>
@@ -57,6 +58,11 @@ User Privilege
    <option value = "write">write</option>
 </select>
 </p>
+
+    <h3>
+    <div id="div_result">
+    </div>
+    </h3>
 
 <p>
     <button id="button_adduser">Add User</button>
