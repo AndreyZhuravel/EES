@@ -7,7 +7,7 @@ Important ! Functionality in development status now !
 Need:
 1)	IDE IntellijIdea
 2)	Maven (apache-maven-3.5.2)
-3)	Tomcat7 (apache-tomcat-8.5.23) + JDBC драйвер
+3)	Tomcat7 (apache-tomcat-8.5.23) + JDBC driver
 4)	Postgre (+PG Admin 4)
 5)	SDK: 1.8.0_144
 
