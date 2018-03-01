@@ -3,14 +3,24 @@
 
  //These buttons present on main_agent.jsp \ main_admin.jsp
 
-          $("#button_admin").click(function() {
+        $("#button_admin").click(function() {
+
+		var passfield =  document.getElementById('pass');
+		if (typeof(passfield) != 'undefined' && passfield != null)
+		{
+
          if (document.getElementById("pass").value == null || document.getElementById("pass").value === "" || document.getElementById("login").value == null || document.getElementById("login").value === "") {
            alert( 'Please input login or password' );
          } else {
 			  var admin = "admin";
 			  CallUserServlet(admin);
          }
-         });
+		}else
+		{
+			result =  "You can't call User Management from this page";
+			$('#div_result').html('<strong>' + result + '</strong>');
+		}
+		});
 
          $("#button_getsqlone").click(function() {
              QueryFirstServlet();
