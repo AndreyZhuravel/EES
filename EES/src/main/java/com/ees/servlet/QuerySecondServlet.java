@@ -2,6 +2,7 @@ package com.ees.servlet;
 
 import com.ees.dao.QuerySecondDaoImpl;
 import com.ees.entity.QuerySecond;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,25 +52,30 @@ public class QuerySecondServlet extends HttpServlet {
                 html = "102";
                 out.println(html);
             }
-            else
-            {
+            else {
 
                 List<QuerySecond> list = QuerySecondDaoImpl.executeQuery(login); /* call findall method*/
-                PrintWriter out = response.getWriter();
-                Iterator<QuerySecond> iqs = list.listIterator();
+                if ((list == null) || list.isEmpty()) {
+                    PrintWriter out = response.getWriter();
+                    System.out.println("ResultSet of SQL#1 is an empty");
+                    html = "111";
+                    out.println(html);
+                } else {
+                    PrintWriter out = response.getWriter();
+                    Iterator<QuerySecond> iqs = list.listIterator();
 
-                while (iqs.hasNext()) {
-                    QuerySecond q = iqs.next();
-                    System.out.println(q);
-                    html = html + "LeadId:" + q.getLeadid()
-                            + ",Is_mist_adr:" + q.getIs_mist_adr()
-                            + ",Is_mist_shop:" + q.getIs_mist_shop()
-                            + ",Is_mist_phone:" + q.getIs_mist_phone() + ";";
+                    while (iqs.hasNext()) {
+                        QuerySecond q = iqs.next();
+                        System.out.println(q);
+                        html = html + "LeadId:" + q.getLeadid()
+                                + ",Is_mist_adr:" + q.getIs_mist_adr()
+                                + ",Is_mist_shop:" + q.getIs_mist_shop()
+                                + ",Is_mist_phone:" + q.getIs_mist_phone() + ";";
+                    }
+                    System.out.println(html);
+
+                    out.println(html);
                 }
-
-                System.out.println(html);
-
-                out.println(html);
             }
 
         } catch (JSONException e) {

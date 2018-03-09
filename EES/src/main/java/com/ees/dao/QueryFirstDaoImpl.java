@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class QueryFirstDaoImpl {
 
-    private static final String FIND_BY_LOGIN_TEST = "" +
+    private static final String FIRST_QUERY = "" +
             "SELECT table_users.id_users, table_users.login, table_salesinfo.leadid " +
             "FROM table_address " +
             "join table_salesinfo ON table_salesinfo.id_salesinfo = table_address.id_table_salesinfo " +
@@ -28,19 +28,18 @@ public class QueryFirstDaoImpl {
 
             conn = DBConnector.getConnection();
 
-            stmt = conn.prepareStatement(FIND_BY_LOGIN_TEST);
+            stmt = conn.prepareStatement(FIRST_QUERY);
             stmt.setString(1, String.valueOf(login));
 
             System.out.println("Successfully call sql method for getting short information about errors in address database");
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
+                 while (rs.next()) {
+                    QueryFirst query = QueryFirst.createQuery(rs);
+                    return query;
 
-                QueryFirst query = QueryFirst.createQuery(rs);
+                }
 
-                return query;
-
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();

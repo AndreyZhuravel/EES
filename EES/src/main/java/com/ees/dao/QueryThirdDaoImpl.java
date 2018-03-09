@@ -44,13 +44,16 @@ public class QueryThirdDaoImpl implements QueryThirdDao {
             System.out.println("Successfully call sql method for getting detail information about errors in address database");
             ResultSet rs = stmt.executeQuery();
 
-            while (rs.next()) {
+//            if (rs.next() == false) {
+//                System.out.println("ResultSet of SQL#3 is an empty");
+//            }
+//            else {
+                while (rs.next()) {
+                    QueryThird queryThird = QueryThird.createThirdQuery(rs);
 
-                QueryThird queryThird = QueryThird.createThirdQuery(rs);
+                    return queryThird;
+                }
 
-               return queryThird;
-
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,6 +67,7 @@ public class QueryThirdDaoImpl implements QueryThirdDao {
         }
         return null;
     }
+
 
     public static QueryThird executeQuery(String login, String lead) {
         return new QueryThirdDaoImpl().selectThirdQueryData(login, lead);

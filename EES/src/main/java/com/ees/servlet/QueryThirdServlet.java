@@ -53,23 +53,30 @@ public class QueryThirdServlet extends HttpServlet {
             else {
                 QueryThird q = QueryThirdDaoImpl.executeQuery(login, lead); /* call findall method*/
 
-                PrintWriter out = response.getWriter();
+                if (q == null) {
+                    PrintWriter out = response.getWriter();
+                    System.out.println("ResultSet of SQL#3 is an empty");
+                    html = "111";
+                    out.println(html);
 
-                html = "Login:" + q.getLogin()
-                        + ",LeadId:" + q.getLeadid()
-                        + ",Pos:" + q.getPos()
-                        + ",Address_reg:" + q.getAddress_reg()
-                        + ",Address_fact:" + q.getAddress_fact()
-                        + ",Shop:" + q.getShop()
-                        + ",Region:" + q.getRegion()
-                        + ",Status:" + q.getStatus()
-                        + ",Condition:" + q.getCondition();
+                } else {
+                    PrintWriter out = response.getWriter();
 
-                System.out.println(html);
+                    html = "Login:" + q.getLogin()
+                            + ",LeadId:" + q.getLeadid()
+                            + ",Pos:" + q.getPos()
+                            + ",Address_reg:" + q.getAddress_reg()
+                            + ",Address_fact:" + q.getAddress_fact()
+                            + ",Shop:" + q.getShop()
+                            + ",Region:" + q.getRegion()
+                            + ",Status:" + q.getStatus()
+                            + ",Condition:" + q.getCondition();
 
-                out.println(html);
+                    System.out.println(html);
+
+                    out.println(html);
+                }
             }
-
         } catch (JSONException e) {
             //throw new IOException("Error parsing JSON request string");
         }

@@ -217,11 +217,17 @@ $.ajax
     $('#div_result').html('<strong>' + result + '</strong>');
     }
     else {
-          var rows = result.split(";");
+    if ((result) == 111) {
+    result =  "This information was not found in database";
+    $('#div_result').html('<strong>' + result + '</strong>');
+    }
+    else {
+//        var rows = result.split(";");
           var fields = result.split(","); // RESULT
           var Id_users = fields[0] + '<br>';
           var login = fields[1] + '<br>';
           var leadid = fields[2] + '<br>';
+
 //        var id_table_address = fields[3] + '<br>';
 //        var pos = fields[4] + '<br>';
 //        var address_reg = fields[5] + '<br>';
@@ -231,14 +237,18 @@ $.ajax
 //        var status = fields[9] + '<br>';
 //        var condition = fields[10] + '<br>';
 //        var id_table_salesinfo = fields[11] + '<br>';
+
           result = Id_users + login + leadid;
+
 //          + id_table_address + pos + address_reg
 //              + address_fact + shop + region + status + condition + id_table_salesinfo;
+
           $('#div_result').html('<strong>' + result + '</strong>');
               }
             }
         }
-    );
+
+    });
 };
 
 //---------------------------------------------------------
@@ -259,29 +269,59 @@ function QuerySecondServlet(){
             data: userJson,
             contentType: "application/json",
             success: function(result)
-
             {
             if ((result) == 102)
-                {
-                result =  "Please input login";
-                $('#div_result').html('<strong>' + result + '</strong>');
-                }
+            {
+            result =  "Please input login";
+            $('#div_result').html('<strong>' + result + '</strong>');
+            }
+            else {
+            if ((result) == 111) {
+            result =  "This information was not found in database";
+            $('#div_result').html('<strong>' + result + '</strong>');
+            }
             else
             {
-//             var fields = result.split(";"); // RESULT
-//             for (var i = 0; i < fields.length; ++i)
-//            {
-//                var counter = fields[i];
-//                alert(counter);
                 var fields = result.split(";"); // RESULT
+				var size = fields.length;
                 var leadid = fields[0] + '<br>';
                 var is_mist_adr = fields[1] + '<br>';
                 var is_mist_shop = fields[2] + '<br>';
                 var is_mist_phone = fields[3] + '<br>';
-                result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
-                $('#div_result').html('<strong>' + result + '</strong>');
-             }
 
+				var myArray    = new Array();
+				myArray[0] = fields[0];
+				myArray[1] = fields[1];
+				myArray[2] = fields[2];
+				myArray[3] = fields[3];
+
+				var myTable= "<table><tr><td style='width: 20px; color: red;'>Lead Id #</td>";
+				myTable+= "<td style='width: 20px; color: red; text-align: left;'>Lead Id</td>";
+				myTable+= "<td style='width: 20px; color: red; text-align: left;'>Address Mistakes</td>";
+				myTable+= "<td style='width: 20px; color: red; text-align: left;'>Shop Mistakes</td>";
+				myTable+= "<td style='width: 20px; color: red; text-align: left;'>Phones Mistakes</td>";
+
+                for (var i=0; i < size-1; i++) {
+
+//	var detailArray    = new Array();
+//	detailArray = myArray[i].split(";");
+//	myTable+="<th style='width: 100px;'>" + detailArray[i].substring(touch[i].indexOf(":") + 2)+ "</th>";
+//	myTable+="<th style='width: 100px;'>" + detailArray[i] + "</th>";
+//	myTable+="<th style='width: 100px;'>" + detailArray[i+1] + "</th>";
+//	myTable+="<th style='width: 100px;'>" + detailArray[i+2] + "</th>";
+//	myTable+="<th style='width: 100px;'>" + detailArray[i+3] + "</th>";
+
+    myTable+="<tr><td style='width: 100px;'>#" + i + " is:</td>";
+	myTable+="<td style='width: 100px;'>" + myArray[i] + "</th>";
+  }
+   myTable+="</table>";
+   $('#div_result').html(myTable);
+
+// result = leadid + is_mist_adr + is_mist_shop + is_mist_phone;
+// $('#div_result').html(result);
+
+                }
+            }
         }
     });
 };
@@ -311,6 +351,11 @@ function QueryThirdServlet(){
             $('#div_result').html('<strong>' + result + '</strong>');
             }
             else {
+            if ((result) == 111) {
+            result =  "This information was not found in database";
+            $('#div_result').html('<strong>' + result + '</strong>');
+            }
+            else {
                 var rows = result.split(";");
                 var fields = result.split(","); // RESULT
                 var login = fields[0] + '<br>';
@@ -326,6 +371,7 @@ function QueryThirdServlet(){
                     + address_fact + shop + region + status + condition;
                 $('#div_result').html('<strong>' + result + '</strong>');
                 }
+            }
             }
     });
 };

@@ -56,11 +56,18 @@ public class QueryFirstServlet extends HttpServlet {
             else {
                 QueryFirst q = QueryFirstDaoImpl.executeQuery(login); /* call findall method*/
 
-                PrintWriter out = response.getWriter();
+                if (q == null) {
+                    PrintWriter out = response.getWriter();
+                    System.out.println("ResultSet of SQL#1 is an empty");
+                    html = "111";
+                    out.println(html);
+                } else{
 
-                html = "Id_users:" + q.getId_users()
-                        + ",Login:" + q.getLogin()
-                        + ",LeadId:" + q.getLeadid();
+                        PrintWriter out = response.getWriter();
+
+                        html = "Id_users:" + q.getId_users()
+                                + ",Login:" + q.getLogin()
+                                + ",LeadId:" + q.getLeadid() + ",";
 //                    + ",Id_table_address:" + q.getId_table_address()
 //                    + ",Pos:" + q.getPos()
 //                    + ",Address_reg:" + q.getAddress_reg()
@@ -71,10 +78,12 @@ public class QueryFirstServlet extends HttpServlet {
 //                    + ",Condition:" + q.getCondition()
 //                    + ",Id_table_sales_info:" + q.getId_table_salesinfo();
 
-                System.out.println(html);
+                        System.out.println(html);
 
-                out.println(html);
-            }
+                        out.println(html);
+                    }
+                }
+
         } catch (JSONException e) {
             //throw new IOException("Error parsing JSON request string");
         }
