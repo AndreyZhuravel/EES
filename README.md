@@ -28,17 +28,21 @@ when click buttons on next page, because in DB not present data for login = "and
 you can see role and prvilege for this user.
 
 2. Update page (or just move to Move to startpage: localhost:8080/EES/). 
-Enter login: sergey, pass: 1234567 and click "Login" - you enter like an User "Sergey":
+Enter login: ivan, pass: 1234567 and click "Login" - you enter like an User "ivan":
 For this user you can see a results of sql query, when click buttons "Show me all errors..." 
-or "Show me short info...". For button "show me details..." you have to enter leadid (for example = 8818001) and you can see a 
-details of leadid.
+or "Show me short info...". For button "show me details..." you have to enter leadid (for example = 8818008) and you can see a 
+details of leadid. 
+Also on this page you can click "add\update\delete user" - but you have some alert and you can't move from this page to admin page.
 
 3. Update page (or just move to Move to startpage: localhost:8080/EES/).
-Try to click "add\update\delete user":
-- if you enter admin Login & Pass (see p.1) = you valid this checking and move to admin page.
-- if you enter some user Login & Pass (see p.2) = you not valid this checking and do not move to admin page.
+Try to click "add\update\delete user" from startpage:
+- if you enter admin Login & Pass (see p.1 = andrey\root) = you valid admin security checking and move to admin page.
+- if you enter some user Login & Pass (see p.2 = ivan\1234567) = you not valid admin security checking and you do not move to admin page.
 
-4. When you login in admin page you can see some fields for user management and 3 buttons (it doesn't work now :().
+4. When you login in admin page you can see fields for user management system and 3 buttons (Add\Delete\Update).
+- for "Add" button (means add new user) - you have to fill user login\pass fields and two drop-down fields(role and privilege).
+- for "Delete" button (means delete user) - you have to fill only user login field.
+- for "Update" button (means update user)- you have to fill user login\pass fields and two drop-down fields(role and privilege).
 
 Thank you !
  

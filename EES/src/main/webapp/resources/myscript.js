@@ -42,7 +42,7 @@
              UpdateUser();
          });
 
-         $("#button_deleteduser").click(function() {
+         $("#button_deleteuser").click(function() {
              DeleteUser();
          });
 //---------------------------------------------------------
@@ -379,46 +379,102 @@ function QueryThirdServlet(){
 //---------------------------------------------------------
 function AddUser(){
 
-    var result;
-    result = "Functionality in development status";
-    $('#div_result').html('<strong>' + result + '</strong>');
+         if (document.getElementById("passnew").value == null || document.getElementById("passnew").value === "" || document.getElementById("loginnew").value == null || document.getElementById("loginnew").value === "") {
+           alert( 'Please input login or password' );
+         }
+		 else {
 
-//
-//var userObj =
-//	{
-//          "login":document.getElementById("loginnew").value,
-//          "pass": document.getElementById("passnew").value,
-//		  "role": document.getElementById("selRole").value,
-//		  "privilege": document.getElementById("selPriv").value
-//    }
-//
-//    var userJson = JSON.stringify(userObj);
-//    var url = "AddUserServlet";
-//
-//$.ajax
-//({
-//    url: url,
-//    method: "post",
-//    data: userJson,
-//    contentType: "application/json",
-//    success: function(result)
-//    {
-//    $('#div_result').html('<strong>' + result + '</strong>');
-//	}
-//});
+var userObj =
+	{
+          "login":document.getElementById("loginnew").value,
+          "pass": document.getElementById("passnew").value,
+		  "role": document.getElementById("selRole").value,
+		  "privilege": document.getElementById("selPriv").value
+    }
+
+    var userJson = JSON.stringify(userObj);
+    var url = "AddUserServlet";
+
+$.ajax
+({
+    url: url,
+    method: "post",
+    data: userJson,
+    contentType: "application/json",
+    success: function(result)
+    {
+    $('#div_result').html('<strong>' + result + '</strong>');
+	}
+});
+
+		}
 };
 
 //---------------------------------------------------------
 function DeleteUser(){
 
-    var result;
-    result = "Functionality in development status";
+    if (confirm("Are you sure?") == true) { //pressed OK
+
+	var userObj =
+	{
+          "login":document.getElementById("loginnew").value
+    }
+    var userJson = JSON.stringify(userObj);
+    var url = "DeleteUserServlet";
+
+$.ajax
+({
+    url: url,
+    method: "post",
+    data: userJson,
+    contentType: "application/json",
+    success: function(result)
+    {
     $('#div_result').html('<strong>' + result + '</strong>');
+	}
+});
+
+
+	 } else {
+         var result = "Operation was canceled"; //pressed Cancel
+		 $('#div_result').html('<strong>' + result + '</strong>');
+	 }
 };
 //---------------------------------------------------------
 function UpdateUser(){
 
-    var result;
-    result = "Functionality in development status";
+var userObj =
+	{
+          "login":document.getElementById("loginnew").value,
+          "pass": document.getElementById("passnew").value,
+		  "role": document.getElementById("selRole").value,
+		  "privilege": document.getElementById("selPriv").value
+    }
+
+    var userJson = JSON.stringify(userObj);
+    console.log(userObj);
+    var url = "UpdateUserServlet";
+
+$.ajax
+({
+    url: url,
+    method: "post",
+    data: userJson,
+    contentType: "application/json",
+    success: function(result)
+    {
     $('#div_result').html('<strong>' + result + '</strong>');
+	}
+});
 };
+
+//---------------------------------------------------------
+function myPassBoxFunction() {
+var x = document.getElementById("pass");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+    x.type = "password";
+            }
+};
+//---------------------------------------------------------

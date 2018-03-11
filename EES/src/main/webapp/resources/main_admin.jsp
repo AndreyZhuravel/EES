@@ -66,8 +66,8 @@ User Privilege
 
 <p>
     <button id="button_adduser">Add User</button>
+    <button id="button_deleteuser">Delete User</button>
 	<button id="button_updateuser">Update User</button>
-	<button id="button_deleteuser">Delete User</button>
 </p>
 
 </body>

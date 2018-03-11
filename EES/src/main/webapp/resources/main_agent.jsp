@@ -12,6 +12,10 @@
 
 </head>
 
+<style type="text/css">
+			#div_result .widget h3 a { text-decoration:none;}
+</style>
+
 <script src="resources/jquery.1.10.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="resources/myscript.js" charset="UTF-8"></script>
@@ -34,8 +38,10 @@
 
 </p>
 
-<div id="div_result">
-</div>
+    <h3>
+    <div id="div_result">
+    </div>
+    </h3>
 
 <p>
     <button id="button_getsqltwo">Show me all my errors</button>

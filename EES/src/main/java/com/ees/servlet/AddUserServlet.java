@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class UserServlet extends HttpServlet {
+public class AddUserServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,60 +59,45 @@ public class UserServlet extends HttpServlet {
 
             String login = jsonObject.getString("login");
             String pass = jsonObject.getString("pass");
+            String role = jsonObject.getString("role");
+            String privilege = jsonObject.getString("privilege");
             String html = "";
 
             // Invoke method for check if this user present in db_ees_test
-            if (checkUser(login) == 0)
+            if (checkUser(login) == 1)
 
             {
                 PrintWriter out = response.getWriter();
-                System.out.println("User is not found in database");
-                html = "User is not found";
+                System.out.println("Addition cancel.User with this name already found in database");
+                html = "Addition cancel.User with this name already found in database";
                 out.println(html);
             }
 
-            // If password is empty get some information from db_ees_test
             else {
-                if (pass.equals("")) {
+                    UserDao daotest = new UserDaoImpl();
+                    List<User> users = daotest.findAll();
+                    int size = users.size();
+                    User lastuser = users.get(size-1);
 
-                    User user = UserDaoImpl.getByLogin(login); /* call findByLogin method*/
+                    int id_users = lastuser.getId_users()+1;
 
-                    PrintWriter out = response.getWriter();
-
-                    html = "Id_users:" + user.getId_users()
-                            + ",Role:" + user.getRole()
-                            + ",Privilege:" + user.getPrivilege();
-
-                    out.println(html);
-
-                } else {
-                    User user = UserDaoImpl.getByLogin(login); /* call findByLogin method*/
-
-                    if ((login.equals(user.getLogin())) && (pass.equals(user.getPass()))) {
-                        System.out.println(user.getLogin());
-
-                        if (user.getRole().equals("root")) {
-                            System.out.println("Admin authorization");
-                            html = "777"; /* Successfull user entering*/
-                        }
-                        else {
-                            System.out.println("Successfull user authorization");
-                            html = "100"; /* Successfull user entering*/
-                        }
-
-                    } else {
-                        System.out.println("Login or password for this user is incorrect");
-                        html = "Authorization denied. Login or password is incorrect";
-                        }
+                    User usernew = new User(id_users, login, pass, role, privilege);
+                    UserDao dao = new UserDaoImpl();
+                    dao.insert(usernew);
 
                     PrintWriter out = response.getWriter();
+                    html = "Id_users:" + usernew.getId_users()
+                            + ",Login:" + usernew.getLogin()
+                            + ",Pass:" + usernew.getPass()
+                            + ",Role:" + usernew.getRole()
+                            + ",Privilege:" + usernew.getPrivilege()
+                            + " was successfully added";
+
                     out.println(html);
-                }
             }
 
-        } catch (JSONException e) {
+            } catch (JSONException e) {
             //throw new IOException("Error parsing JSON request string");
         }
-
     }
 }

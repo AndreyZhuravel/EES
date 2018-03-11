@@ -30,6 +30,21 @@ public class UserTest {
         System.out.println("NumberOfUsersInDatabase test is OK");
     }
 
+//    @Test
+//    public void UpdateUser() {
+//
+//        int id_users = 7;
+//        String login = "ivan";
+//        String pass = "1234567";
+//        String role = "agent";
+//        String privilege = "read";;
+//
+//        User user = new User(id_users,login,pass,role,privilege);
+//        UserDao dao = new UserDaoImpl();
+//        dao.update(user);
+//        System.out.println("Update user");
+//    }
+
     @Test
     public void UserFieldsIsNotNull() {
         UserDao dao = new UserDaoImpl();

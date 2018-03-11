@@ -10,10 +10,10 @@
 
     <style>
         /* Full-width input fields */
-        input[type=text], input[type=password] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
+        input[type=text], [type=login], input[type=password] {
+            width: 20%;
+            padding: 5px 20px;
+            margin: 5px 0;
             display: inline-block;
             border: 1px solid #ccc;
             box-sizing: border-box;
@@ -26,7 +26,7 @@
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 100%;
+            width: 70%;
         }
         button:hover {
             opacity: 0.8;
@@ -240,7 +240,9 @@
                     <p> Login
                         <input type="login" id="login" value=""/>
                         Password
-                        <input type="pass" id="pass" value=""/>
+                        <input type="password" id="pass" value=""/>
+                        <input type="checkbox" onclick="myPassBoxFunction()">Show Password
+
                     </p>
 					<br>
                     <p>
@@ -300,7 +302,7 @@
         <div id="id01" class="modal">
             <form class="modal-content animate">
                 <!--
-                action="/action_page.php">
+                action="/action_page.jsp">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="resources/java.png" alt="User" class="avatar">

@@ -45,7 +45,6 @@ public class UserDaoImpl implements UserDao {
                 String privilege = rs.getString("privilege");
 
                 User user = new User(id_users,login,pass,role,privilege);
-
                 users.add(user);
             }
 
@@ -175,6 +174,7 @@ public class UserDaoImpl implements UserDao {
             }
 
             return result;
+
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -198,7 +198,6 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(2, user.getPass());
             stmt.setString(3, user.getRole());
             stmt.setString(4, user.getPrivilege());
-
             stmt.setInt(5, user.getId_users());
 
             return stmt.executeUpdate();
@@ -245,4 +244,5 @@ public class UserDaoImpl implements UserDao {
     public static User getByLogin(String login) {
         return new UserDaoImpl().findByLogin(login);
     }
+
 }
