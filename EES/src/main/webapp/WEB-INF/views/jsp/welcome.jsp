@@ -125,7 +125,9 @@
 			#page { background:#eee;}
 			#header, #footer, #top-nav, #content, #content #contentbar, #content #sidebar { margin:0; padding:0;}
 			/* Logo */
-			#logo { padding:10px; width:auto; float:left;}
+			/* #logo { padding:20px; width:auto; float:left;} */
+			/* #logo {width:auto; height:auto; float:left;} */
+			#logo {width:40%; height:40%; float:left;}
 			#logo h1 a, h1 a:hover { color:darkblue; text-decoration:none;}
 			#logo h1 span { color:#d3d3f9;}
 			/* Header - * Цвет за Cool logo */
@@ -207,7 +209,7 @@
                 <h1><a href="#">Be<span>Simple</span></a></h1>
                 -->
                 <img src="resources/java.png" class="avatar">
-
+				<br>
 				<div id="div_role_result">
 				</div>
 
@@ -225,7 +227,7 @@
     </header>
     <div class="feature">
         <div class="feature-inner">
-            <h1>EES Project</h1>
+            <h1>Eagle Eye System. Watching over.</h1>
         </div>
     </div>
 
